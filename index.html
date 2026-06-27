@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>AIML Freshers Portal 2026 – Sankara College</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#040b1a; --bg2:#070f22; --card:#0d1a35; --card2:#101e3a;
+  --cyan:#00d4ff; --purple:#a855f7; --pink:#ec4899;
+  --green:#22d3a0; --yellow:#fbbf24;
+  --text:#e2e8f0; --muted:#94a3b8;
+  --border:rgba(0,212,255,0.15);
+  --glow:0 0 20px rgba(0,212,255,0.3);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg2)}
+::-webkit-scrollbar-thumb{background:var(--cyan);border-radius:3px}
+body::before{content:'';position:fixed;inset:0;
+  background:radial-gradient(ellipse at 20% 50%,rgba(168,85,247,0.08) 0%,transparent 50%),
+             radial-gradient(ellipse at 80% 20%,rgba(0,212,255,0.08) 0%,transparent 50%);
+  pointer-events:none;z-index:0}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:1000;background:rgba(4,11,26,0.94);
+  backdrop-filter:blur(14px);border-bottom:1px solid var(--border);
+  padding:0 2rem;display:flex;align-items:center;gap:1.5rem;height:66px}
+.nav-logos{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.nav-text{line-height:1.25}
+.nav-text strong{font-family:'Orbitron',sans-serif;font-size:10.5px;color:var(--cyan);display:block}
+.nav-text span{font-size:9.5px;color:var(--muted)}
+.nav-links{display:flex;gap:3px;margin-left:auto}
+.nav-links a{padding:6px 13px;border-radius:20px;color:var(--muted);font-size:12.5px;
+  text-decoration:none;transition:all .2s;display:flex;align-items:center;gap:5px;cursor:pointer;
+  border:1px solid transparent}
+.nav-links a:hover,.nav-links a.active{background:rgba(0,212,255,0.1);color:var(--cyan);border-color:rgba(0,212,255,0.25)}
+
+/* HERO */
+.hero{position:relative;min-height:320px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;padding:4rem 2rem 3rem;overflow:hidden}
+.hero-bg{position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%,rgba(168,85,247,0.22) 0%,transparent 60%),
+             radial-gradient(ellipse at 50% 110%,rgba(0,212,255,0.1) 0%,transparent 60%);
+  pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;
+  background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.3);
+  border-radius:20px;padding:5px 16px;font-size:12px;color:var(--cyan);margin-bottom:1.25rem}
+.hero h1{font-family:'Orbitron',sans-serif;font-size:clamp(26px,5vw,50px);
+  font-weight:800;line-height:1.1;margin-bottom:.75rem}
+.c-cyan{color:var(--cyan)} .c-purple{color:var(--purple)}
+.hero-sub{font-size:17px;color:var(--cyan);margin-bottom:2rem;letter-spacing:2px}
+.hero-sub span{color:var(--purple)}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.btn-primary{padding:11px 26px;border-radius:30px;border:none;
+  background:linear-gradient(135deg,var(--cyan),#0088cc);
+  color:#000;font-weight:600;font-size:14px;cursor:pointer;transition:all .2s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,212,255,0.4)}
+.btn-outline{padding:11px 26px;border-radius:30px;border:2px solid var(--purple);
+  background:transparent;color:var(--purple);font-weight:600;font-size:14px;cursor:pointer;transition:all .2s}
+.btn-outline:hover{background:rgba(168,85,247,0.15);transform:translateY(-2px)}
+
+/* STATS BAR */
+.stats-bar{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  display:flex;justify-content:center;flex-wrap:wrap}
+.stat-item{padding:1.2rem 2.8rem;text-align:center;border-right:1px solid var(--border);
+  display:flex;flex-direction:column;align-items:center;gap:4px}
+.stat-item:last-child{border-right:none}
+.stat-num{font-family:'Orbitron',sans-serif;font-size:26px;font-weight:800;color:var(--cyan)}
+.stat-label{font-size:11px;color:var(--muted)}
+
+/* SECTIONS */
+.section{padding:3.5rem 2rem;max-width:1200px;margin:0 auto}
+.section-header{text-align:center;margin-bottom:2.25rem}
+.section-header h2{font-family:'Orbitron',sans-serif;font-size:clamp(18px,3vw,26px);
+  font-weight:800;margin-bottom:.4rem;display:flex;align-items:center;justify-content:center;gap:10px}
+.section-header p{color:var(--muted);font-size:13px}
+.section-divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
+
+/* AIML GRID */
+.aiml-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px}
+.aiml-card{background:var(--card);border:1px solid var(--border);border-radius:14px;
+  padding:1rem;text-align:center;transition:all .2s}
+.aiml-card:hover{border-color:var(--cyan);transform:translateY(-3px);box-shadow:var(--glow)}
+.aiml-icon{font-size:26px;margin-bottom:7px;display:block}
+.aiml-card h3{font-size:12px;font-weight:600;color:var(--text);margin-bottom:4px;line-height:1.3}
+.aiml-card p{font-size:11px;color:var(--muted);line-height:1.5}
+
+/* CONTROLS */
+.freshers-controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:1.5rem}
+.freshers-controls input,.freshers-controls select{
+  background:var(--card);border:1px solid var(--border);border-radius:8px;
+  padding:9px 14px;color:var(--text);font-size:13px;outline:none;transition:border-color .2s}
+.freshers-controls input{flex:1;min-width:180px}
+.freshers-controls input::placeholder{color:var(--muted)}
+.freshers-controls input:focus,.freshers-controls select:focus{border-color:var(--cyan)}
+.freshers-controls select option{background:var(--bg2)}
+.btn-random{margin-left:auto;padding:9px 18px;border-radius:8px;
+  border:1px solid var(--purple);background:rgba(168,85,247,0.1);
+  color:var(--purple);font-size:13px;font-weight:500;cursor:pointer;
+  display:flex;align-items:center;gap:6px;transition:all .2s;white-space:nowrap}
+.btn-random:hover{background:rgba(168,85,247,0.2)}
+
+/* FRESHER CARD */
+.freshers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:12px}
+.fresher-card{background:var(--card);border:1px solid var(--border);border-radius:14px;
+  padding:.9rem .7rem;text-align:center;cursor:pointer;transition:all .2s;user-select:none}
+.fresher-card:hover{border-color:var(--cyan);transform:translateY(-3px);box-shadow:var(--glow)}
+.f-avatar{width:54px;height:54px;border-radius:50%;margin:0 auto 8px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Orbitron',sans-serif;font-weight:800;font-size:15px;border:2px solid}
+.fresher-card h4{font-size:12px;font-weight:600;color:var(--text);line-height:1.3;margin-bottom:5px}
+.tap-hint{font-size:9px;color:var(--muted);opacity:.75}
+.f-count{font-size:13px;color:var(--muted);margin-bottom:.75rem;text-align:center}
+
+/* ===== STUDENT MODAL ===== */
+.s-modal-overlay{display:none;position:fixed;inset:0;
+  background:rgba(2,6,18,0.88);z-index:3000;
+  align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(6px)}
+.s-modal-overlay.open{display:flex}
+.s-modal-box{background:var(--card2);border-radius:22px;max-width:500px;width:100%;
+  border:1px solid rgba(0,212,255,0.22);position:relative;
+  overflow:hidden;max-height:92vh;display:flex;flex-direction:column}
+
+/* Modal header */
+.sm-header{padding:1.4rem 1.5rem 1rem;display:flex;align-items:center;gap:14px;
+  border-bottom:1px solid var(--border);flex-shrink:0}
+.sm-av{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-family:'Orbitron',sans-serif;font-weight:800;
+  font-size:16px;border:2px solid;flex-shrink:0}
+.sm-info{flex:1;min-width:0}
+.sm-name{font-family:'Orbitron',sans-serif;font-size:14px;font-weight:700;
+  color:var(--text);margin-bottom:2px}
+.sm-meta{font-size:11px;color:var(--muted)}
+.sm-close{position:absolute;top:13px;right:14px;background:rgba(255,255,255,0.06);
+  border:1px solid var(--border);color:var(--muted);font-size:16px;cursor:pointer;
+  width:28px;height:28px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;transition:all .2s}
+.sm-close:hover{color:var(--text);border-color:var(--cyan)}
+
+/* Tabs */
+.sm-tabs{display:flex;border-bottom:1px solid var(--border);flex-shrink:0;padding:0 1.25rem;overflow-x:auto}
+.sm-tab{padding:.7rem .95rem;font-size:12px;font-weight:500;color:var(--muted);
+  cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;
+  white-space:nowrap;display:flex;align-items:center;gap:5px}
+.sm-tab:hover{color:var(--text)}
+.sm-tab.active{color:var(--cyan);border-bottom-color:var(--cyan)}
+
+/* Tab body */
+.sm-body{padding:1.2rem 1.4rem;overflow-y:auto;flex:1}
+.sm-panel{display:none}
+.sm-panel.active{display:block}
+
+/* Info blocks */
+.info-block{border-radius:12px;padding:.95rem 1rem;margin-bottom:10px}
+.info-block.cyan{background:rgba(0,212,255,0.07);border:1px solid rgba(0,212,255,0.18)}
+.info-block.purple{background:rgba(168,85,247,0.07);border:1px solid rgba(168,85,247,0.22)}
+.info-block.green{background:rgba(34,211,160,0.06);border:1px solid rgba(34,211,160,0.18)}
+.info-lbl{font-size:9.5px;font-weight:700;letter-spacing:.6px;
+  text-transform:uppercase;margin-bottom:6px;display:flex;align-items:center;gap:5px}
+.info-lbl.cyan{color:var(--cyan)} .info-lbl.purple{color:var(--purple)} 
+.info-lbl.green{color:var(--green)} .info-lbl.yellow{color:var(--yellow)}
+.info-text{font-size:13px;color:var(--text);line-height:1.72;font-style:italic}
+.info-text.normal{font-style:normal}
+
+/* Editable fields */
+.field-section{margin-bottom:14px}
+.field-section-lbl{font-size:10px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;
+  margin-bottom:8px;display:flex;align-items:center;gap:6px;padding-bottom:6px;
+  border-bottom:1px solid var(--border)}
+.field-saved-row{border-radius:12px;padding:.9rem 1rem;margin-bottom:8px;
+  border:1px solid;display:flex;gap:10px;align-items:flex-start;min-height:52px}
+.field-saved-icon{font-size:18px;flex-shrink:0;margin-top:1px}
+.field-saved-text{font-size:13px;line-height:1.65;color:var(--text)}
+.field-saved-empty{font-size:13px;color:var(--muted);font-style:italic}
+.field-ta{width:100%;background:rgba(255,255,255,0.04);border:1px solid;
+  border-radius:10px;padding:10px 13px;color:var(--text);font-size:13px;
+  outline:none;resize:vertical;min-height:80px;line-height:1.65;
+  font-family:'Inter',sans-serif;transition:border-color .2s;margin-bottom:8px}
+.field-ta::placeholder{color:var(--muted)}
+.field-row{display:flex;gap:8px;align-items:flex-start;margin-bottom:8px}
+.field-input{flex:1;background:rgba(255,255,255,0.04);border:1px solid;
+  border-radius:10px;padding:10px 13px;color:var(--text);font-size:13px;
+  outline:none;font-family:'Inter',sans-serif;transition:border-color .2s}
+.field-input::placeholder{color:var(--muted)}
+.field-btn{padding:9px 16px;border-radius:10px;border:none;
+  font-weight:600;font-size:12px;cursor:pointer;transition:all .2s;white-space:nowrap}
+.field-hint{font-size:10.5px;color:var(--muted);text-align:center;line-height:1.5;margin-top:4px}
+
+/* Color themes */
+.field-ta.cyan{border-color:rgba(0,212,255,0.25)}
+.field-ta.cyan:focus{border-color:var(--cyan)}
+.field-saved-row.cyan{background:rgba(0,212,255,0.07);border-color:rgba(0,212,255,0.25)}
+.field-btn.cyan{background:linear-gradient(135deg,var(--cyan),#0088cc);color:#000}
+.field-btn.cyan:hover{box-shadow:0 4px 14px rgba(0,212,255,0.35);transform:translateY(-1px)}
+
+.field-ta.green{border-color:rgba(34,211,160,0.25)}
+.field-ta.green:focus{border-color:var(--green)}
+.field-saved-row.green{background:rgba(34,211,160,0.07);border-color:rgba(34,211,160,0.25)}
+.field-btn.green{background:linear-gradient(135deg,var(--green),#16a085);color:#000}
+.field-btn.green:hover{box-shadow:0 4px 14px rgba(34,211,160,0.35);transform:translateY(-1px)}
+
+.field-input.yellow{border-color:rgba(251,191,36,0.3)}
+.field-input.yellow:focus{border-color:var(--yellow)}
+.field-saved-row.yellow{background:rgba(251,191,36,0.07);border-color:rgba(251,191,36,0.3)}
+.field-btn.yellow{background:linear-gradient(135deg,var(--yellow),#f59e0b);color:#000}
+.field-btn.yellow:hover{box-shadow:0 4px 14px rgba(251,191,36,0.35);transform:translateY(-1px)}
+
+/* JOURNEY */
+.journey-layout{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:start}
+.journey-card{border-radius:14px;padding:1.2rem;border:1px solid var(--border);background:var(--card)}
+.journey-card.active-yr{border-color:var(--purple);background:linear-gradient(135deg,rgba(168,85,247,0.1),var(--card))}
+.jcard-yr{font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:5px}
+.jcard-title{font-family:'Orbitron',sans-serif;font-size:12px;font-weight:700;margin-bottom:9px}
+.jcard-list{list-style:none;display:flex;flex-direction:column;gap:5px}
+.jcard-list li{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.jcard-list li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--cyan);flex-shrink:0}
+
+/* RESOURCES */
+.res-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.res-card{background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:.85rem .75rem;display:flex;align-items:center;gap:10px;transition:all .2s}
+.res-card:hover{border-color:var(--cyan);box-shadow:var(--glow)}
+.res-logo{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.res-name{font-size:13px;font-weight:500;color:var(--text)}
+
+/* MISSION VISION */
+.mv-layout{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:2rem}
+.mv-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.4rem}
+.mv-card.mission{border-left:3px solid var(--cyan)}
+.mv-card.vision{border-left:3px solid var(--purple)}
+.mv-label{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:7px}
+.mv-card.mission .mv-label{color:var(--cyan)}
+.mv-card.vision .mv-label{color:var(--purple)}
+.mv-card h3{font-family:'Orbitron',sans-serif;font-size:14px;margin-bottom:7px}
+.mv-card p{font-size:13px;color:var(--muted);line-height:1.7}
+
+/* JOBS */
+.jobs-grid{width:100%}
+.job-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.1rem;transition:all .2s}
+.job-card:hover{border-color:var(--green);transform:translateY(-3px);box-shadow:0 0 20px rgba(34,211,160,0.2)}
+.job-role{font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px}
+.job-sal{font-size:12px;color:var(--green);font-weight:500;margin-bottom:8px}
+.job-skills{display:flex;flex-wrap:wrap;gap:4px}
+.job-skill{font-size:10px;background:rgba(0,212,255,0.08);color:var(--cyan);padding:2px 7px;border-radius:8px;border:1px solid rgba(0,212,255,0.2)}
+
+/* THOUGHTS PAGE */
+.thoughts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.thought-card{background:var(--card);border:1px solid var(--border);border-radius:16px;
+  padding:1.2rem;cursor:pointer;transition:all .2s}
+.thought-card:hover{border-color:var(--purple);transform:translateY(-3px);box-shadow:0 0 20px rgba(168,85,247,0.25)}
+.thought-av{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-family:'Orbitron',sans-serif;font-weight:800;
+  font-size:14px;margin-bottom:10px;border:2px solid}
+.thought-name{font-size:13px;font-weight:700;color:var(--text);margin-bottom:10px}
+.thought-row{margin-bottom:8px;padding:8px 10px;border-radius:10px;border:1px solid}
+.thought-row-lbl{font-size:9px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;margin-bottom:4px}
+.thought-row-val{font-size:11.5px;color:var(--text);line-height:1.55;font-style:italic;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.thought-row-empty{font-size:11px;color:var(--muted);font-style:italic}
+.thought-row.cyan{background:rgba(0,212,255,0.06);border-color:rgba(0,212,255,0.2)}
+.thought-row-lbl.cyan{color:var(--cyan)}
+.thought-row.yellow{background:rgba(251,191,36,0.06);border-color:rgba(251,191,36,0.2)}
+.thought-row-lbl.yellow{color:var(--yellow)}
+.thought-tap{font-size:10px;color:var(--purple);margin-top:8px;text-align:right}
+
+/* THOUGHT MODAL */
+.t-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.82);
+  z-index:2000;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(6px)}
+.t-modal-overlay.open{display:flex}
+.t-modal-box{background:var(--card);border-radius:22px;max-width:440px;width:100%;
+  padding:1.8rem;position:relative;border:1px solid rgba(168,85,247,0.35);max-height:90vh;overflow-y:auto}
+.t-modal-close{position:absolute;top:14px;right:16px;background:rgba(255,255,255,0.06);
+  border:1px solid var(--border);color:var(--muted);font-size:16px;cursor:pointer;
+  width:28px;height:28px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;transition:all .2s}
+.t-modal-close:hover{color:var(--text);border-color:var(--purple)}
+
+/* FOOTER */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 2rem 1.5rem}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;margin-bottom:1.5rem}
+.footer-brand .ft{font-family:'Orbitron',sans-serif;font-size:13px;color:var(--cyan);font-weight:700}
+.footer-brand p{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.6}
+.footer-links h4,.footer-social h4{font-size:12px;font-weight:600;color:var(--text);margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
+.footer-links a{display:block;font-size:12px;color:var(--muted);text-decoration:none;margin-bottom:6px;transition:color .2s;cursor:pointer}
+.footer-links a:hover{color:var(--cyan)}
+.social-btns{display:flex;gap:8px;flex-wrap:wrap}
+.social-btn{width:36px;height:36px;border-radius:8px;border:1px solid var(--border);
+  background:transparent;color:var(--muted);font-size:15px;display:flex;
+  align-items:center;justify-content:center;cursor:pointer;transition:all .2s;text-decoration:none}
+.social-btn:hover{border-color:var(--cyan);color:var(--cyan)}
+.footer-copy{text-align:center;font-size:11px;color:var(--muted);border-top:1px solid var(--border);padding-top:1rem}
+
+/* PAGE VISIBILITY */
+.page-section{display:none}
+.page-section.active{display:block}
+
+/* CONFETTI */
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:9999;overflow:hidden}
+.c-dot{position:absolute;border-radius:50%;animation:fall linear forwards}
+@keyframes fall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(105vh) rotate(720deg);opacity:0}}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--green);color:#000;font-size:13px;font-weight:600;
+  padding:10px 22px;border-radius:30px;opacity:0;transition:all .3s;
+  z-index:9000;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<div id="confetti"></div>
+<div class="toast" id="toast"></div>
+
+<!-- ===== STUDENT MODAL ===== -->
+<div class="s-modal-overlay" id="studentModal" onclick="handleModalBg(event)">
+  <div class="s-modal-box">
+
+    <div class="sm-header">
+      <div class="sm-av" id="sm-av"></div>
+      <div class="sm-info">
+        <div class="sm-name" id="sm-name"></div>
+        <div class="sm-meta" id="sm-meta"></div>
+      </div>
+      <button class="sm-close" onclick="closeStudentModal()">✕</button>
+    </div>
+
+    <div class="sm-tabs">
+      <div class="sm-tab active" onclick="switchTab(0,this)">✨ Welcome</div>
+      <div class="sm-tab" onclick="switchTab(1,this)">📍 Day 1</div>
+      <div class="sm-tab" onclick="switchTab(2,this)">🎓 3rd Year</div>
+      <div class="sm-tab" onclick="switchTab(3,this)">🏢 Dream Co.</div>
+    </div>
+
+    <div class="sm-body">
+
+      <!-- PANEL 0 — Welcome -->
+      <div class="sm-panel active" id="sp-0">
+        <div class="info-block cyan" style="margin-bottom:10px">
+          <div class="info-lbl cyan">👋 Welcome Message</div>
+          <div class="info-text" id="sm-welcome"></div>
+        </div>
+        <div class="info-block purple" style="margin-bottom:10px">
+          <div class="info-lbl purple">🤖 AI Prediction</div>
+          <div class="info-text normal" id="sm-ai"></div>
+        </div>
+        <div class="info-block green">
+          <div class="info-lbl green">💡 Quote</div>
+          <div class="info-text" id="sm-quote"></div>
+        </div>
+      </div>
+
+      <!-- PANEL 1 — Day 1 -->
+      <div class="sm-panel" id="sp-1">
+        <div class="field-section">
+          <div class="field-section-lbl" style="color:var(--cyan)">📍 How did your Day 1 feel?</div>
+          <div class="field-saved-row cyan" id="d1-saved">
+            <div class="field-saved-icon">📍</div>
+            <div id="d1-text" class="field-saved-empty">Not written yet — be the first to share your Day 1 feeling!</div>
+          </div>
+          <textarea class="field-ta cyan" id="d1-input"
+            placeholder="Share how you felt on your very first day of college… nervous? excited? lost? inspired? Write it here."
+            maxlength="400"></textarea>
+          <button class="field-btn cyan" onclick="saveField('day1')">Save Day 1 Feeling ✓</button>
+          <div class="field-hint">💡 This stays saved in your browser</div>
+        </div>
+      </div>
+
+      <!-- PANEL 2 — 3rd Year -->
+      <div class="sm-panel" id="sp-2">
+        <div class="field-section">
+          <div class="field-section-lbl" style="color:var(--green)">🎓 Your 3rd Year Reflection</div>
+          <div class="field-saved-row green" id="y3-saved">
+            <div class="field-saved-icon">🎓</div>
+            <div id="y3-text" class="field-saved-empty">Not written yet — come back after year 3 to fill this!</div>
+          </div>
+          <textarea class="field-ta green" id="y3-input"
+            placeholder="What did you learn through 3 years? How do you feel now? What changed in you? Write your honest reflection…"
+            maxlength="500"></textarea>
+          <button class="field-btn green" onclick="saveField('year3')">Save 3rd Year Reflection ✓</button>
+          <div class="field-hint">💡 This stays saved in your browser</div>
+        </div>
+      </div>
+
+      <!-- PANEL 3 — Dream Company -->
+      <div class="sm-panel" id="sp-3">
+        <div class="field-section">
+          <div class="field-section-lbl" style="color:var(--yellow)">🏢 What's Your Dream Company?</div>
+          <div class="field-saved-row yellow" id="dc-saved">
+            <div class="field-saved-icon">🏢</div>
+            <div id="dc-text" class="field-saved-empty">Not filled yet — what's your dream?</div>
+          </div>
+          <div class="field-row">
+            <input class="field-input yellow" id="dc-input"
+              placeholder="e.g. Google, Infosys, OpenAI, own startup…" maxlength="60"/>
+            <button class="field-btn yellow" onclick="saveField('company')">Save ✓</button>
+          </div>
+          <div class="field-hint">💡 This stays saved in your browser</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===== THOUGHT MODAL ===== -->
+<div class="t-modal-overlay" id="thoughtModal" onclick="handleThoughtBg(event)">
+  <div class="t-modal-box">
+    <button class="t-modal-close" onclick="closeThoughtModal()">✕</button>
+    <div id="tm-av" style="width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-weight:800;font-size:17px;margin:0 auto 10px;border:2px solid"></div>
+    <div id="tm-name" style="font-family:'Orbitron',sans-serif;font-size:15px;font-weight:700;text-align:center;margin-bottom:3px"></div>
+    <div id="tm-meta" style="font-size:11px;color:var(--muted);text-align:center;margin-bottom:1.3rem"></div>
+
+    <div style="background:rgba(0,212,255,0.07);border:1px solid rgba(0,212,255,0.22);border-radius:12px;padding:1rem;margin-bottom:10px">
+      <div style="font-size:9.5px;font-weight:700;color:var(--cyan);letter-spacing:.6px;text-transform:uppercase;margin-bottom:7px">📍 Day 1 — How I felt</div>
+      <div id="tm-day1" style="font-size:13px;color:var(--text);line-height:1.72;font-style:italic"></div>
+    </div>
+
+    <div style="background:rgba(34,211,160,0.06);border:1px solid rgba(34,211,160,0.22);border-radius:12px;padding:1rem;margin-bottom:10px">
+      <div style="font-size:9.5px;font-weight:700;color:var(--green);letter-spacing:.6px;text-transform:uppercase;margin-bottom:7px">🎓 After 3 Years — My reflection</div>
+      <div id="tm-year3" style="font-size:13px;color:var(--text);line-height:1.72;font-style:italic"></div>
+    </div>
+
+    <div style="background:rgba(251,191,36,0.06);border:1px solid rgba(251,191,36,0.22);border-radius:12px;padding:1rem">
+      <div style="font-size:9.5px;font-weight:700;color:var(--yellow);letter-spacing:.6px;text-transform:uppercase;margin-bottom:7px">🏢 Dream Company</div>
+      <div id="tm-company" style="font-size:15px;font-weight:700;color:var(--yellow)"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== NAV ===== -->
+<nav>
+  <div class="nav-logos">
+    <!--
+    ╔══════════════════════════════════════════════════════╗
+    ║  HOW TO ADD LOGOS — READ BEFORE EDITING             ║
+    ╠══════════════════════════════════════════════════════╣
+    ║                                                      ║
+    ║  1. Save college logo as:   college-logo.png         ║
+    ║     (in same folder as this HTML file)               ║
+    ║                                                      ║
+    ║  COLLEGE LOGO SOURCE:                                ║
+    ║  → https://www.sankaracollege.edu.in                 ║
+    ║    (official site, right-click → Save As logo)       ║
+    ║  OR Google Images:                                   ║
+    ║    "Sankara College of Science and Commerce logo"    ║
+    ║                                                      ║
+    ║  2. Save dept logo as:      dept-logo.png            ║
+    ║     (in same folder as this HTML file)               ║
+    ║                                                      ║
+    ║  DEPT LOGO SOURCE:                                   ║
+    ║  → Ask your HOD or department coordinator            ║
+    ║  OR use the college site's department page:          ║
+    ║    https://www.sankaracollege.edu.in/dept-aiml       ║
+    ║  OR create one at: https://www.canva.com             ║
+    ║    (search "AI ML department logo" template)         ║
+    ║                                                      ║
+    ║  Until files are added, emoji placeholders appear.   ║
+    ╚══════════════════════════════════════════════════════╝
+    -->
+    <div style="position:relative">
+      <img src="college-logo.png" alt="College Logo"
+        style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--cyan);display:block"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div style="display:none;width:44px;height:44px;border-radius:50%;border:2px dashed var(--cyan);
+        align-items:center;justify-content:center;font-size:20px;cursor:default"
+        title="Add college-logo.png to show the real logo">🏛️</div>
+    </div>
+    <div style="position:relative">
+      <img src="dept-logo.png" alt="Dept Logo"
+        style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--purple);display:block"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+      <div style="display:none;width:44px;height:44px;border-radius:50%;border:2px dashed var(--purple);
+        align-items:center;justify-content:center;font-size:20px;cursor:default"
+        title="Add dept-logo.png to show the real logo">🤖</div>
+    </div>
+  </div>
+  <div class="nav-text">
+    <strong>SANKARA COLLEGE OF SCIENCE &amp; COMMERCE</strong>
+    <span>Department of Artificial Intelligence &amp; Machine Learning</span>
+  </div>
+  <div class="nav-links">
+    <a class="active" onclick="showPage('home',this)">🏠 Home</a>
+    <a onclick="showPage('about',this)">🤖 About AIML</a>
+    <a onclick="showPage('freshers',this)">👨‍🎓 Freshers</a>
+    <a onclick="showPage('thoughts',this)">💬 Thoughts</a>
+    <a onclick="showPage('journey',this)">🗺️ Journey</a>
+    <a onclick="showPage('resources',this)">📚 Resources</a>
+  </div>
+</nav>
+
+<!-- ===== HOME ===== -->
+<div id="page-home" class="page-section active">
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-badge">🎓 Department of AI &amp; Machine Learning · 2026–2029</div>
+    <h1><span class="c-cyan">AIML Freshers</span> <span class="c-purple">Portal 2026</span></h1>
+    <div class="hero-sub">Learn <span>•</span> Adapt <span>•</span> Intelligent</div>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="showPage('freshers',null)">👨‍🎓 Meet Our Freshers</button>
+      <button class="btn-outline" onclick="showPage('about',null)">🚀 Explore Department</button>
+    </div>
+  </div>
+  <div class="stats-bar">
+    <div class="stat-item"><div class="stat-num">64</div><div class="stat-label">👥 Freshers</div></div>
+    <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">🎓 Years Journey</div></div>
+    <div class="stat-item"><div class="stat-num">15+</div><div class="stat-label">💼 Career Paths</div></div>
+    <div class="stat-item"><div class="stat-num">20</div><div class="stat-label">📖 Platforms</div></div>
+    <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">🚀 Innovation</div></div>
+  </div>
+  <div class="section">
+    <div class="section-header"><h2>🤖 About AIML</h2><p>Core pillars of Artificial Intelligence &amp; Machine Learning</p></div>
+    <div class="aiml-grid" id="aiml-grid-home"></div>
+  </div>
+  <div class="section-divider"></div>
+  <div class="section">
+    <div class="section-header"><h2>👨‍🎓 Meet Our Freshers</h2></div>
+    <div class="freshers-controls">
+      <input type="text" id="homeSearch" placeholder="Search by name…" oninput="filterHome()"/>
+      <select id="homeSort" onchange="filterHome()">
+        <option value="az">Sort A – Z</option>
+        <option value="za">Sort Z – A</option>
+      </select>
+      <button class="btn-random" onclick="highlightRandom('fg-home')">✨ Random</button>
+    </div>
+    <div class="f-count" id="homeCount">Showing all 60 freshers</div>
+    <div class="freshers-grid" id="fg-home"></div>
+  </div>
+  <div class="section-divider"></div>
+  <div class="section" style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start">
+    <div>
+      <div class="section-header" style="text-align:left"><h2>📚 Learning Journey</h2></div>
+      <div class="journey-layout" id="journey-home"></div>
+    </div>
+    <div>
+      <div class="section-header" style="text-align:left"><h2>🌐 Learning Resources</h2></div>
+      <div class="res-grid" id="res-home"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ABOUT ===== -->
+<div id="page-about" class="page-section">
+  <div class="section">
+    <div class="section-header"><h2>🤖 About AIML</h2><p>The complete landscape of Artificial Intelligence &amp; Machine Learning</p></div>
+    <div class="aiml-grid" id="aiml-grid-about" style="grid-template-columns:repeat(auto-fill,minmax(150px,1fr))"></div>
+    <div style="height:3rem"></div>
+    <div class="section-header"><h2>🎯 Mission &amp; Vision</h2></div>
+    <div class="mv-layout">
+      <div class="mv-card mission">
+        <div class="mv-label">📍 Mission</div>
+        <h3>What We Do</h3>
+        <p>To nurture technically skilled, ethically grounded AI practitioners who solve real-world problems using machine learning and data-driven thinking — with a focus on India's growing digital economy.</p>
+      </div>
+      <div class="mv-card vision">
+        <div class="mv-label">🔭 Vision</div>
+        <h3>Where We're Going</h3>
+        <p>To be Tamil Nadu's most respected AI &amp; ML program, producing graduates who lead innovation in industry, research, and entrepreneurship — carrying Sankara's values wherever they go.</p>
+      </div>
+    </div>
+    <div style="height:2rem"></div>
+    <div class="section-header"><h2>💼 AI &amp; ML Job Roles</h2><p>Real careers you can land after your B.Sc.</p></div>
+    <div class="jobs-grid" id="jobs-grid"></div>
+    <div style="margin-top:1rem;font-size:11px;color:var(--muted);text-align:center">✦ Senior-level roles — typically requires 3–5 years of experience after graduation</div>
+  </div>
+</div>
+
+<!-- ===== FRESHERS ===== -->
+<div id="page-freshers" class="page-section">
+  <div class="section">
+    <div class="section-header"><h2>👨‍🎓 Meet Our Freshers</h2><p>Class of 2026 — 65 brilliant minds of B.Sc. AI &amp; ML</p></div>
+    <div class="freshers-controls">
+      <input type="text" id="fresherSearch" placeholder="Search by name…" oninput="filterFreshers()"/>
+      <select id="fresherSort" onchange="filterFreshers()">
+        <option value="az">Sort A – Z</option>
+        <option value="za">Sort Z – A</option>
+      </select>
+      <button class="btn-random" onclick="highlightRandom('fg-full')">✨ Random</button>
+    </div>
+    <div class="f-count" id="fresherCount">Showing all 60 freshers</div>
+    <div class="freshers-grid" id="fg-full"></div>
+  </div>
+</div>
+
+<!-- ===== THOUGHTS ===== -->
+<div id="page-thoughts" class="page-section">
+  <div class="section">
+    <div class="section-header">
+      <h2>💬 Student Thoughts</h2>
+      <p>Day 1 feelings · 3rd Year reflections · Dream companies — written by the students themselves</p>
+    </div>
+    <div class="freshers-controls" style="margin-bottom:1.5rem">
+      <input type="text" id="thoughtSearch" placeholder="Search student…" oninput="filterThoughts()"/>
+      <button class="btn-random" onclick="openRandomThought()">🎲 Random</button>
+    </div>
+    <div id="thoughts-empty" style="display:none;text-align:center;padding:3rem;color:var(--muted);font-size:14px">
+      <div style="font-size:40px;margin-bottom:12px">✍️</div>
+      <div>No student thoughts yet — open any fresher's card and fill in their Day 1 or Dream Company!</div>
+    </div>
+    <div class="thoughts-grid" id="thoughts-grid"></div>
+  </div>
+</div>
+
+<!-- ===== JOURNEY ===== -->
+<div id="page-journey" class="page-section">
+  <div class="section">
+    <div class="section-header"><h2>📚 Your Learning Journey</h2><p>Three years, one transformation</p></div>
+    <div id="journey-full"></div>
+  </div>
+</div>
+
+<!-- ===== RESOURCES ===== -->
+<div id="page-resources" class="page-section">
+  <div class="section">
+    <div class="section-header"><h2>🌐 Learning Resources</h2><p>Everything you need to go from zero to AI hero</p></div>
+    <div id="res-full"></div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="ft">SANKARA COLLEGE OF SCIENCE &amp; COMMERCE</div>
+      <p>Department of Artificial Intelligence and Machine Learning<br/>Committed to shaping the AI leaders of tomorrow.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a onclick="showPage('home',null)">🏠 Home</a>
+      <a onclick="showPage('about',null)">🤖 About AIML</a>
+      <a onclick="showPage('freshers',null)">👨‍🎓 Freshers</a>
+      <a onclick="showPage('journey',null)">🗺️ Journey</a>
+      <a onclick="showPage('resources',null)">📚 Resources</a>
+    </div>
+    <div class="footer-social">
+      <h4>Connect With Us</h4>
+      <div class="social-btns">
+        <a class="social-btn" title="Instagram">📸</a>
+        <a class="social-btn" title="LinkedIn">💼</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copy">© 2026 AIML Department, Sankara College of Science &amp; Commerce. All Rights Reserved.</div>
+</footer>
+
+<script>
+/* ============================================================
+   DATA
+============================================================ */
+const aimlTopics=[
+  {icon:'🤖',title:'Artificial Intelligence',desc:'Building intelligent systems that think, learn and adapt.'},
+  {icon:'🧠',title:'Machine Learning',desc:'Algorithms that learn from data and make smart decisions.'},
+  {icon:'🔬',title:'Deep Learning',desc:'Neural networks powering the next generation of AI.'},
+  {icon:'📊',title:'Data Science',desc:'Extracting meaningful insights from data using science.'},
+  {icon:'💬',title:'Natural Language Processing',desc:'Enabling machines to understand human language.'},
+  {icon:'👁️',title:'Computer Vision',desc:'Teaching machines to see, recognize and understand.'},
+  {icon:'✨',title:'Generative AI',desc:'Creating new content including text, images and more.'},
+  {icon:'🦾',title:'Robotics',desc:'Combining AI with machines to build real-world robots.'},
+];
+
+const names=['Abinaya V','Abishek R','Abitha E','Ajitha A','Akash J','Akash P','Alangara Muthu S','Anandbabu S','Archana M','Arpudha M','Arun Vijay S','Bhavana R','Bhavatharani S','Christus A','Dharani Sri S','Dhipika S','Gayathri Lakshmi K','Godwin Moses S','Gowthamji P','Illakaya V','Janani K','Karan T','Kavipriya J','Kaviya L','Kaviya Shree S','Keerthana R','Lakshmanan S','Lipika A','Lishanthini M','Lochan R','Madhu Sarathi S','Mahalakshmi M','Mahalakshmi S','Mirthika M','Mohammed Shadu M S','Nandhini S','Naveen Kumar S','Nitheesh S','Paul Joseph R','Pooja S','Poovika Pradeepa C','Pravin Kumar P','Priya Dharshini S','Ragavendra S','Rama Malarva Kumaran M','Ramkumar S','Rosariyo','Sabarika K','Sanjay Prakash P','Saranya R','Saranya S','Shainy X','Sivasathya K','Sri Hari R','Subanethra P','Subbulakshmi M','Suganth L','Sugasri S','Swetha S','Vandhana R','Varshini M','Vibin N','Vishnu V','Vishwanathan S'];
+
+const avatarColors=[
+  ['rgba(0,212,255,0.18)','#00d4ff'],
+  ['rgba(168,85,247,0.18)','#a855f7'],
+  ['rgba(236,72,153,0.18)','#ec4899'],
+  ['rgba(34,211,160,0.18)','#22d3a0'],
+  ['rgba(251,191,36,0.18)','#fbbf24']
+];
+
+const quotes=[
+  'Welcome! Your journey begins here.',
+  'Every great achievement starts with a welcome.',
+  'Welcome to a world of endless possibilities.',
+  'Step in, learn, and grow.',
+  'Welcome! Today is a great day to begin.',
+  'Your future starts with this first step.',
+  'Welcome to innovation and inspiration.',
+  'Together, let\'s build something amazing.',
+  'Welcome! Curiosity leads to success.',
+  'Every expert was once a beginner. Welcome!',
+  'Great minds start with great beginnings.',
+  'Welcome to a smarter tomorrow.',
+  'Learn today, lead tomorrow.',
+  'Welcome to the future of technology.',
+  'Every click is a new opportunity.',
+  'Welcome! Let\'s create the impossible.',
+  'Dream big, start here.',
+  'Welcome to knowledge without limits.',
+  'Your success story starts now.',
+  'Explore. Learn. Achieve.',
+  'Welcome to endless learning.',
+  'Every journey begins with a single step.',
+  'Welcome to the next level.',
+  'Great things are waiting for you.',
+  'Enter with curiosity, leave with confidence.',
+  'Welcome to a place where ideas grow.',
+  'Learn something new every day.',
+  'Welcome to innovation in action.',
+  'Start strong, stay focused.',
+  'Welcome! Let\'s shape the future together.',
+  'Explore your potential.',
+  'Welcome to a brighter future.',
+  'Your adventure begins today.',
+  'Believe in yourself and begin.',
+  'Welcome to excellence.',
+  'Success starts with showing up.',
+  'Every moment is a fresh start.',
+  'Welcome to a world of creativity.',
+  'Think differently. Learn continuously.',
+  'Welcome! The best is yet to come.',
+  'Begin with confidence.',
+  'Every idea matters here.',
+  'Welcome to your learning destination.',
+  'Discover, create, inspire.',
+  'Great opportunities await you.',
+  'Welcome! Keep moving forward.',
+  'Your journey to success begins now.',
+  'Together, we achieve more.',
+  'Welcome to innovation without limits.',
+  'Build your dreams here.',
+  'Welcome to a future full of possibilities.',
+  'Stay curious, stay inspired.',
+  'The future belongs to learners.',
+  'Welcome! Make today count.',
+  'Start with passion, finish with success.',
+  'Learn, innovate, and achieve.',
+  'Welcome to a smarter experience.',
+  'Unlock your potential today.',
+  'Every beginning is special.',
+  'Welcome! Your ideas matter.',
+  'Success begins with a warm welcome.',
+  'The future starts with you.',
+  'Welcome to greatness.',
+  'Welcome! Let\'s create the future, one step at a time.',
+];
+
+const welcomeMsgs=[
+  'Welcome! Your journey begins here.',
+  'Every great achievement starts with a welcome.',
+  'Welcome to a world of endless possibilities.',
+  'Step in, learn, and grow.',
+  'Welcome! Today is a great day to begin.',
+  'Your future starts with this first step.',
+  'Welcome to innovation and inspiration.',
+  'Together, let\'s build something amazing.',
+  'Welcome! Curiosity leads to success.',
+  'Every expert was once a beginner. Welcome!',
+  'Great minds start with great beginnings.',
+  'Welcome to a smarter tomorrow.',
+  'Learn today, lead tomorrow.',
+  'Welcome to the future of technology.',
+  'Every click is a new opportunity.',
+  'Welcome! Let\'s create the impossible.',
+  'Dream big, start here.',
+  'Welcome to knowledge without limits.',
+  'Your success story starts now.',
+  'Explore. Learn. Achieve.',
+  'Welcome to endless learning.',
+  'Every journey begins with a single step.',
+  'Welcome to the next level.',
+  'Great things are waiting for you.',
+  'Enter with curiosity, leave with confidence.',
+  'Welcome to a place where ideas grow.',
+  'Learn something new every day.',
+  'Welcome to innovation in action.',
+  'Start strong, stay focused.',
+  'Welcome! Let\'s shape the future together.',
+  'Explore your potential.',
+  'Welcome to a brighter future.',
+  'Your adventure begins today.',
+  'Believe in yourself and begin.',
+  'Welcome to excellence.',
+  'Success starts with showing up.',
+  'Every moment is a fresh start.',
+  'Welcome to a world of creativity.',
+  'Think differently. Learn continuously.',
+  'Welcome! The best is yet to come.',
+  'Begin with confidence.',
+  'Every idea matters here.',
+  'Welcome to your learning destination.',
+  'Discover, create, inspire.',
+  'Great opportunities await you.',
+  'Welcome! Keep moving forward.',
+  'Your journey to success begins now.',
+  'Together, we achieve more.',
+  'Welcome to innovation without limits.',
+  'Build your dreams here.',
+  'Welcome to a future full of possibilities.',
+  'Stay curious, stay inspired.',
+  'The future belongs to learners.',
+  'Welcome! Make today count.',
+  'Start with passion, finish with success.',
+  'Learn, innovate, and achieve.',
+  'Welcome to a smarter experience.',
+  'Unlock your potential today.',
+  'Every beginning is special.',
+  'Welcome! Your ideas matter.',
+  'Success begins with a warm welcome.',
+  'The future starts with you.',
+  'Welcome to greatness.',
+  'Welcome! Let\'s create the future, one step at a time.',
+];
+
+const aiPredictions=[
+  'AI predicts you\'ll solve a bug today.',
+  'Your next idea has startup potential.',
+  'Coffee will increase your coding speed by 42%.',
+  'You will train a successful model soon.',
+  'A hidden talent in AI is about to appear.',
+  'Your Python skills will level up today.',
+  'Your next project will impress everyone.',
+  'Git commits are in your favor.',
+  'Your model will finally converge.',
+  'Debugging luck is on your side.',
+  'Today is perfect for learning something new.',
+  'Neural networks approve your dedication.',
+  'AI predicts a productive coding session.',
+  'Your future includes innovative AI projects.',
+  'Your creativity score is rising.',
+  'Success is one algorithm away.',
+  'Your next dataset will be clean.',
+  'Machine learning loves your curiosity.',
+  'Expect a surprise opportunity this week.',
+  'Your confidence is increasing with every line of code.',
+  'AI sees leadership in your future.',
+  'A breakthrough idea is coming soon.',
+  'You\'ll explain AI clearly to others.',
+  'Your next presentation will stand out.',
+  'New knowledge is waiting for you today.',
+  'Your future model will beat expectations.',
+  'You\'re becoming an AI problem solver.',
+  'A new collaboration is approaching.',
+  'AI predicts excellent exam performance.',
+  'Today is lucky for innovation.',
+  'You are closer to your dream career.',
+  'One small step today leads to big success.',
+  'Your future GitHub profile will shine.',
+  'AI detects unlimited learning potential.',
+  'A coding challenge will make you stronger.',
+  'Someone will appreciate your work today.',
+  'Great opportunities are loading...',
+  'AI predicts a day full of inspiration.',
+  'Your next experiment will teach something valuable.',
+  'Smart decisions are ahead.',
+  'Your hard work will be noticed.',
+  'The future favors persistent learners.',
+  'AI predicts you\'ll master a new library soon.',
+  'A hidden shortcut will save your time.',
+  'You will inspire another learner.',
+  'Your portfolio is about to grow.',
+  'AI says: Never stop asking questions.',
+  'Every error is training your future success.',
+  'Innovation is your superpower.',
+  'AI predicts a bright tech career.',
+  'You\'re one project away from confidence.',
+  'Your logical thinking is improving.',
+  'A mentor will guide you at the right time.',
+  'Your next solution will be elegant.',
+  'AI predicts exciting opportunities ahead.',
+  'The future is coding in your favor.',
+  'Success probability: 98.7%.',
+  'Confidence model: Fully trained.',
+  'Dream job prediction: Positive.',
+  'Learning progress: Outstanding.',
+  'AI says your consistency will pay off.',
+  'Your future is powered by intelligence.',
+  'Prediction complete: Keep building.',
+  'Final Prediction: The world will know your name through innovation.',
+];
+
+const journeyData=[
+  {yr:'Year 1',label:'Foundation',color:'#00d4ff',active:false,items:['Python','Git & GitHub','Linux','Mathematics','DSA','SQL','Data Analysis']},
+  {yr:'Year 2',label:'Core AI & ML',color:'#a855f7',active:true,items:['Machine Learning','Deep Learning','Computer Vision','NLP']},
+  {yr:'Year 3',label:'Advanced AI',color:'#22d3a0',active:false,items:['Generative AI','MLOps','Cloud','Advanced AI Topics','Deployment','Portfolio & Internships']},
+];
+
+const resources=[
+  {logo:'🟠',name:'NPTEL',desc:'AI, ML, Deep Learning, NLP, Data Science (IIT courses)',free:true,url:'https://nptel.ac.in',bg:'rgba(255,140,0,0.15)'},
+  {logo:'🇮🇳',name:'SWAYAM',desc:'AI, ML, Python, Data Science',free:true,url:'https://swayam.gov.in',bg:'rgba(255,153,0,0.13)'},
+  {logo:'🟡',name:'Kaggle Learn',desc:'Python, Pandas, ML, Deep Learning, SQL',free:true,url:'https://www.kaggle.com/learn',bg:'rgba(32,178,170,0.15)'},
+  {logo:'🟢',name:'Google ML Crash Course',desc:'ML fundamentals with TensorFlow',free:true,url:'https://developers.google.com/machine-learning/crash-course',bg:'rgba(52,211,153,0.12)'},
+  {logo:'🤖',name:'DeepLearning.AI',desc:'Generative AI, LLMs, Prompt Engineering, RAG',free:true,url:'https://learn.deeplearning.ai',bg:'rgba(0,212,255,0.12)'},
+  {logo:'🔥',name:'fast.ai',desc:'Practical Deep Learning using PyTorch',free:true,url:'https://www.fast.ai',bg:'rgba(220,53,69,0.12)'},
+  {logo:'🤗',name:'Hugging Face Learn',desc:'Transformers, LLMs, NLP, AI Agents',free:true,url:'https://huggingface.co/learn',bg:'rgba(255,200,0,0.1)'},
+  {logo:'🔷',name:'Microsoft Learn AI',desc:'Azure AI, Generative AI, AI Engineering',free:true,url:'https://learn.microsoft.com/en-us/ai',bg:'rgba(0,120,215,0.12)'},
+  {logo:'📘',name:'IBM SkillsBuild',desc:'AI, Data Science, Machine Learning',free:true,url:'https://skillsbuild.org',bg:'rgba(0,100,255,0.1)'},
+  {logo:'🟣',name:'freeCodeCamp',desc:'Python, Machine Learning, Data Analysis',free:true,url:'https://www.freecodecamp.org',bg:'rgba(168,85,247,0.12)'},
+  {logo:'🎓',name:'MIT OpenCourseWare',desc:'AI, Deep Learning, Mathematics',free:true,url:'https://ocw.mit.edu',bg:'rgba(163,28,28,0.12)'},
+  {logo:'🏛️',name:'Harvard CS50 AI',desc:'AI with Python, search, neural networks',free:true,url:'https://cs50.harvard.edu/ai',bg:'rgba(165,28,48,0.12)'},
+  {logo:'👁️',name:'OpenCV University',desc:'Computer Vision and OpenCV',free:true,url:'https://opencv.org/university',bg:'rgba(0,212,255,0.1)'},
+  {logo:'🔴',name:'PyTorch Tutorials',desc:'Deep Learning with PyTorch',free:true,url:'https://pytorch.org/tutorials',bg:'rgba(220,53,69,0.12)'},
+  {logo:'🟠',name:'TensorFlow Tutorials',desc:'ML & Deep Learning with TensorFlow',free:true,url:'https://www.tensorflow.org/tutorials',bg:'rgba(255,140,0,0.12)'},
+];
+
+const jobs=[
+  // Software & Web
+  {role:'Software Engineer',sal:'₹5–12 LPA',cat:'💻 Software & Web'},
+  {role:'Full Stack Developer',sal:'₹5–10 LPA',cat:'💻 Software & Web'},
+  {role:'Frontend Developer',sal:'₹4–8 LPA',cat:'💻 Software & Web'},
+  {role:'Backend Developer',sal:'₹6–12 LPA',cat:'💻 Software & Web'},
+  {role:'Mobile App Developer',sal:'₹5–10 LPA',cat:'💻 Software & Web'},
+  // Infrastructure & Cloud
+  {role:'DevOps Engineer',sal:'₹6–12 LPA',cat:'☁️ Infrastructure & Cloud'},
+  {role:'Cloud Engineer',sal:'₹6–12 LPA',cat:'☁️ Infrastructure & Cloud'},
+  {role:'Site Reliability Engineer',sal:'₹8–15 LPA',cat:'☁️ Infrastructure & Cloud'},
+  // Security
+  {role:'Cybersecurity Analyst',sal:'₹5–10 LPA',cat:'🔐 Security'},
+  {role:'Ethical Hacker / Pen Tester',sal:'₹6–12 LPA',cat:'🔐 Security'},
+  {role:'Network Engineer',sal:'₹4–8 LPA',cat:'🔐 Security'},
+  {role:'Database Administrator',sal:'₹5–10 LPA',cat:'🔐 Security'},
+  // Data
+  {role:'Data Analyst',sal:'₹4–8 LPA',cat:'📊 Data'},
+  {role:'Data Engineer',sal:'₹8–15 LPA',cat:'📊 Data'},
+  {role:'Data Scientist',sal:'₹7–15 LPA',cat:'📊 Data'},
+  // AI & ML
+  {role:'Machine Learning Engineer',sal:'₹6–15 LPA',cat:'🤖 AI & ML'},
+  {role:'AI Engineer',sal:'₹6–12 LPA',cat:'🤖 AI & ML'},
+  {role:'Deep Learning Engineer',sal:'₹8–18 LPA',cat:'🤖 AI & ML'},
+  {role:'NLP Engineer',sal:'₹8–18 LPA',cat:'🤖 AI & ML'},
+  {role:'Computer Vision Engineer',sal:'₹8–18 LPA',cat:'🤖 AI & ML'},
+  {role:'Generative AI Engineer',sal:'₹10–20 LPA',cat:'🤖 AI & ML'},
+  {role:'AI Research Engineer',sal:'₹12–25 LPA',cat:'🤖 AI & ML'},
+  {role:'MLOps Engineer',sal:'₹8–18 LPA',cat:'🤖 AI & ML'},
+  {role:'AI Solutions Architect',sal:'₹20–35 LPA ✦',cat:'🤖 AI & ML',senior:true},
+  {role:'Robotics AI Engineer',sal:'₹6–15 LPA',cat:'🤖 AI & ML'},
+  {role:'Recommendation Systems Eng.',sal:'₹10–18 LPA',cat:'🤖 AI & ML'},
+  {role:'AI Product Manager',sal:'₹12–25 LPA ✦',cat:'🤖 AI & ML',senior:true},
+  // Other Tech
+  {role:'UI/UX Designer',sal:'₹4–8 LPA',cat:'🎨 Other Tech'},
+  {role:'QA / Test Engineer',sal:'₹4–8 LPA',cat:'🎨 Other Tech'},
+  {role:'Game Developer',sal:'₹5–10 LPA',cat:'🎨 Other Tech'},
+  {role:'Embedded Systems Engineer',sal:'₹5–10 LPA',cat:'🎨 Other Tech'},
+  {role:'Blockchain Developer',sal:'₹8–15 LPA',cat:'🎨 Other Tech'},
+  {role:'AR/VR Developer',sal:'₹6–12 LPA',cat:'🎨 Other Tech'},
+  {role:'IoT Engineer',sal:'₹5–10 LPA',cat:'🎨 Other Tech'},
+  {role:'ERP Consultant',sal:'₹6–12 LPA',cat:'🎨 Other Tech'},
+  {role:'Product Manager',sal:'₹10–20 LPA ✦',cat:'🎨 Other Tech',senior:true},
+];
+
+/* Build freshers array */
+const freshers = names.map((name,i)=>({
+  name,
+  color: avatarColors[i % avatarColors.length],
+  quote: quotes[i % quotes.length],
+  welcome: welcomeMsgs[i % welcomeMsgs.length],
+  aiPred: aiPredictions[i % aiPredictions.length],
+}));
+
+/* ============================================================
+   HELPERS
+============================================================ */
+function initials(n){return n.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase()}
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2200);
+}
+function lsKey(name,field){return 'aiml26_'+field+'_'+name.replace(/\s+/g,'_')}
+function getStored(name,field){return localStorage.getItem(lsKey(name,field))||''}
+
+/* ============================================================
+   RENDER HELPERS
+============================================================ */
+function renderAIML(id){
+  const el=document.getElementById(id); if(!el)return;
+  el.innerHTML=aimlTopics.map(t=>`<div class="aiml-card"><span class="aiml-icon">${t.icon}</span><h3>${t.title}</h3><p>${t.desc}</p></div>`).join('');
+}
+function renderResources(id){
+  const el=document.getElementById(id); if(!el)return;
+  el.innerHTML=resources.map(r=>`
+    <a class="res-card" href="${r.url}" target="_blank" rel="noopener" style="text-decoration:none;cursor:pointer">
+      <div class="res-logo" style="background:${r.bg}">${r.logo}</div>
+      <div style="min-width:0">
+        <div class="res-name">${r.name}</div>
+        ${r.free?'<div style="font-size:10px;color:var(--green);margin-top:2px">✅ Free</div>':''}
+      </div>
+    </a>`).join('');
+}
+function renderResourcesFull(){
+  const el=document.getElementById('res-full'); if(!el)return;
+  el.innerHTML=`
+    <div style="overflow-x:auto;border-radius:14px;border:1px solid var(--border)">
+      <table style="width:100%;border-collapse:collapse;font-size:13px">
+        <thead>
+          <tr style="background:var(--card2);border-bottom:1px solid var(--border)">
+            <th style="padding:12px 16px;text-align:left;font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:var(--cyan);font-weight:700">Platform</th>
+            <th style="padding:12px 16px;text-align:left;font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:var(--cyan);font-weight:700">What You'll Learn</th>
+            <th style="padding:12px 16px;text-align:center;font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:var(--cyan);font-weight:700">Free</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${resources.map((r,i)=>`
+            <tr style="border-bottom:1px solid var(--border);background:${i%2===0?'var(--card)':'var(--card2)'};transition:background .15s"
+              onmouseover="this.style.background='rgba(0,212,255,0.07)'" onmouseout="this.style.background='${i%2===0?'var(--card)':'var(--card2)'}'">
+              <td style="padding:12px 16px">
+                <a href="${r.url}" target="_blank" rel="noopener"
+                  style="display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)">
+                  <div style="width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;background:${r.bg}">${r.logo}</div>
+                  <span style="font-weight:600;color:var(--cyan)">${r.name} ↗</span>
+                </a>
+              </td>
+              <td style="padding:12px 16px;color:var(--muted);line-height:1.5">${r.desc}</td>
+              <td style="padding:12px 16px;text-align:center;font-size:15px">${r.free?'✅':''}</td>
+            </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>`;
+}
+function renderJobs(){
+  const el=document.getElementById('jobs-grid'); if(!el)return;
+  // Group by category
+  const cats={};
+  jobs.forEach(j=>{
+    if(!cats[j.cat])cats[j.cat]=[];
+    cats[j.cat].push(j);
+  });
+  el.innerHTML=Object.entries(cats).map(([cat,list])=>`
+    <div style="margin-bottom:1.5rem">
+      <div style="font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;
+        color:var(--cyan);margin-bottom:10px;display:flex;align-items:center;gap:6px;
+        padding-bottom:6px;border-bottom:1px solid var(--border)">${cat}</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px">
+        ${list.map(j=>`
+          <div class="job-card" style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:.85rem 1rem">
+            <div style="font-size:13px;font-weight:600;color:var(--text);line-height:1.35">${j.role}${j.senior?'<span style="font-size:9px;color:var(--yellow);margin-left:5px;vertical-align:middle">Senior</span>':''}</div>
+            <div style="font-size:12px;color:var(--green);font-weight:600;white-space:nowrap">${j.sal}</div>
+          </div>`).join('')}
+      </div>
+    </div>`).join('');
+}
+function renderJourneyHome(){
+  const el=document.getElementById('journey-home'); if(!el)return;
+  el.innerHTML=journeyData.map(j=>`<div class="journey-card${j.active?' active-yr':''}"><div class="jcard-yr" style="color:${j.color}">${j.yr}</div><div class="jcard-title" style="color:${j.color}">${j.label}</div><ul class="jcard-list">${j.items.map(it=>`<li>${it}</li>`).join('')}</ul></div>`).join('');
+}
+function renderJourneyFull(){
+  const el=document.getElementById('journey-full'); if(!el)return;
+  el.innerHTML='<div style="display:flex;flex-direction:column;gap:20px">'+journeyData.map(j=>`<div style="background:var(--card);border:1px solid ${j.color}44;border-left:4px solid ${j.color};border-radius:14px;padding:1.5rem"><div style="color:${j.color};font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px">${j.yr}</div><div style="font-family:'Orbitron',sans-serif;font-size:16px;font-weight:700;color:${j.color};margin-bottom:12px">${j.label}</div><div style="display:flex;flex-wrap:wrap;gap:8px">${j.items.map(it=>`<span style="background:${j.color}18;color:${j.color};border:1px solid ${j.color}44;border-radius:8px;padding:4px 12px;font-size:12px">${it}</span>`).join('')}</div></div>`).join('')+'</div>';
+}
+
+/* ============================================================
+   FRESHER CARDS
+============================================================ */
+function cardHTML(f,idx){
+  const [bg,bc]=f.color;
+  return `<div class="fresher-card" onclick="openStudentModal(${idx})">
+    <div class="f-avatar" style="background:${bg};border-color:${bc};color:${bc}">${initials(f.name)}</div>
+    <h4>${f.name}</h4>
+    <div class="tap-hint">Tap to explore →</div>
+  </div>`;
+}
+function renderGrid(gridId, list){
+  document.getElementById(gridId).innerHTML=list.map(f=>cardHTML(f,freshers.indexOf(f))).join('');
+}
+function filterHome(){
+  const q=(document.getElementById('homeSearch').value||'').trim().toLowerCase();
+  const s=document.getElementById('homeSort').value;
+  let list=freshers.filter(f=>!q||f.name.toLowerCase().includes(q));
+  list=[...list].sort((a,b)=>s==='az'?a.name.localeCompare(b.name):b.name.localeCompare(a.name));
+  document.getElementById('homeCount').textContent=list.length===65?'Showing all 65 freshers':`Showing ${list.length} of 65`;
+  renderGrid('fg-home',list);
+}
+function filterFreshers(){
+  const q=(document.getElementById('fresherSearch').value||'').trim().toLowerCase();
+  const s=document.getElementById('fresherSort').value;
+  let list=freshers.filter(f=>!q||f.name.toLowerCase().includes(q));
+  list=[...list].sort((a,b)=>s==='az'?a.name.localeCompare(b.name):b.name.localeCompare(a.name));
+  document.getElementById('fresherCount').textContent=list.length===65?'Showing all 65 freshers':`Showing ${list.length} of 65`;
+  renderGrid('fg-full',list);
+}
+function highlightRandom(gridId){
+  const cards=document.querySelectorAll('#'+gridId+' .fresher-card');
+  if(!cards.length)return;
+  cards.forEach(c=>c.style.boxShadow='');
+  const r=cards[Math.floor(Math.random()*cards.length)];
+  r.style.boxShadow='0 0 0 3px #a855f7,0 0 30px rgba(168,85,247,0.5)';
+  r.scrollIntoView({behavior:'smooth',block:'center'});
+  setTimeout(()=>r.style.boxShadow='',3000);
+}
+
+/* ============================================================
+   STUDENT MODAL
+============================================================ */
+let activeIdx=null;
+
+function openStudentModal(idx){
+  activeIdx=idx;
+  const f=freshers[idx];
+  const [bg,bc]=f.color;
+
+  const av=document.getElementById('sm-av');
+  av.style.background=bg; av.style.borderColor=bc; av.style.color=bc;
+  av.textContent=initials(f.name);
+  document.getElementById('sm-name').textContent=f.name;
+  document.getElementById('sm-meta').textContent='Batch 2026–2029';
+
+  // Panel 0
+  document.getElementById('sm-welcome').textContent='"'+f.welcome+'"';
+  document.getElementById('sm-ai').textContent=f.aiPred;
+  document.getElementById('sm-quote').textContent='"'+f.quote+'"';
+
+  // Panel 1 — Day 1
+  const d1=getStored(f.name,'day1');
+  const d1el=document.getElementById('d1-text');
+  if(d1){d1el.textContent=d1;d1el.className='field-saved-text'}
+  else{d1el.textContent='Not written yet — be the first to share your Day 1 feeling!';d1el.className='field-saved-empty'}
+  document.getElementById('d1-input').value=d1;
+
+  // Panel 2 — Year 3
+  const y3=getStored(f.name,'year3');
+  const y3el=document.getElementById('y3-text');
+  if(y3){y3el.textContent=y3;y3el.className='field-saved-text'}
+  else{y3el.textContent='Not written yet — come back after year 3 to fill this!';y3el.className='field-saved-empty'}
+  document.getElementById('y3-input').value=y3;
+
+  // Panel 3 — Dream Company
+  const dc=getStored(f.name,'company');
+  const dcel=document.getElementById('dc-text');
+  if(dc){dcel.textContent=dc;dcel.className='field-saved-text'}
+  else{dcel.textContent='Not filled yet — what\'s your dream?';dcel.className='field-saved-empty'}
+  document.getElementById('dc-input').value=dc;
+
+  // Reset to tab 0
+  document.querySelectorAll('.sm-tab').forEach((t,i)=>t.classList.toggle('active',i===0));
+  document.querySelectorAll('.sm-panel').forEach((p,i)=>p.classList.toggle('active',i===0));
+
+  document.getElementById('studentModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeStudentModal(){
+  document.getElementById('studentModal').classList.remove('open');
+  document.body.style.overflow='';
+  // Refresh thoughts if on that page
+  renderThoughts(freshers.filter(f=>{
+    const q=(document.getElementById('thoughtSearch').value||'').trim().toLowerCase();
+    return !q||f.name.toLowerCase().includes(q);
+  }));
+  activeIdx=null;
+}
+function handleModalBg(e){if(e.target===document.getElementById('studentModal'))closeStudentModal();}
+
+function switchTab(idx,el){
+  document.querySelectorAll('.sm-tab').forEach((t,i)=>t.classList.toggle('active',i===idx));
+  document.querySelectorAll('.sm-panel').forEach((p,i)=>p.classList.toggle('active',i===idx));
+}
+
+function saveField(field){
+  if(activeIdx===null)return;
+  const f=freshers[activeIdx];
+  let val='',textEl;
+  if(field==='day1'){
+    val=document.getElementById('d1-input').value.trim();
+    textEl=document.getElementById('d1-text');
+  } else if(field==='year3'){
+    val=document.getElementById('y3-input').value.trim();
+    textEl=document.getElementById('y3-text');
+  } else {
+    val=document.getElementById('dc-input').value.trim();
+    textEl=document.getElementById('dc-text');
+  }
+  if(!val){showToast('Please write something first!');return;}
+  localStorage.setItem(lsKey(f.name,field),val);
+  textEl.textContent=val;
+  textEl.className='field-saved-text';
+  showToast('✓ Saved for '+f.name+'!');
+}
+
+/* ============================================================
+   THOUGHTS PAGE — shows only students with filled data
+============================================================ */
+function renderThoughts(list){
+  const grid=document.getElementById('thoughts-grid');
+  const empty=document.getElementById('thoughts-empty');
+  
+  // Filter to students who have at least one field filled
+  const withData=list.filter(f=>
+    getStored(f.name,'day1')||getStored(f.name,'year3')||getStored(f.name,'company')
+  );
+
+  if(!withData.length){
+    grid.innerHTML='';
+    empty.style.display='block';
+    return;
+  }
+  empty.style.display='none';
+
+  grid.innerHTML=withData.map(f=>{
+    const d1=getStored(f.name,'day1');
+    const y3=getStored(f.name,'year3');
+    const dc=getStored(f.name,'company');
+    const idx=freshers.indexOf(f);
+    return `<div class="thought-card" onclick="openThought(${idx})">
+      <div class="thought-av" style="background:${f.color[0]};border-color:${f.color[1]};color:${f.color[1]}">${initials(f.name)}</div>
+      <div class="thought-name">${f.name}</div>
+      ${d1?`<div class="thought-row cyan">
+        <div class="thought-row-lbl cyan">📍 Day 1</div>
+        <div class="thought-row-val">"${d1}"</div>
+      </div>`:''}
+      ${dc?`<div class="thought-row yellow">
+        <div class="thought-row-lbl yellow">🏢 Dream</div>
+        <div class="thought-row-val" style="font-style:normal;font-weight:700;color:var(--yellow)">${dc}</div>
+      </div>`:''}
+      <div class="thought-tap">Tap to read full →</div>
+    </div>`;
+  }).join('');
+}
+
+function filterThoughts(){
+  const q=(document.getElementById('thoughtSearch').value||'').trim().toLowerCase();
+  renderThoughts(freshers.filter(f=>!q||f.name.toLowerCase().includes(q)));
+}
+
+function openThought(idx){
+  const f=freshers[idx];
+  const d1=getStored(f.name,'day1');
+  const y3=getStored(f.name,'year3');
+  const dc=getStored(f.name,'company');
+
+  const av=document.getElementById('tm-av');
+  av.style.background=f.color[0]; av.style.borderColor=f.color[1]; av.style.color=f.color[1];
+  av.textContent=initials(f.name);
+  document.getElementById('tm-name').textContent=f.name;
+  document.getElementById('tm-meta').textContent='Batch 2026–2029';
+  
+  const d1el=document.getElementById('tm-day1');
+  d1el.textContent=d1?'"'+d1+'"':'Not written yet.';
+  d1el.style.color=d1?'var(--text)':'var(--muted)';
+
+  const y3el=document.getElementById('tm-year3');
+  y3el.textContent=y3?'"'+y3+'"':'Not written yet — check back after year 3!';
+  y3el.style.color=y3?'var(--text)':'var(--muted)';
+
+  const dcel=document.getElementById('tm-company');
+  dcel.textContent=dc||'—';
+  dcel.style.color=dc?'var(--yellow)':'var(--muted)';
+
+  document.getElementById('thoughtModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function openRandomThought(){
+  // Only pick from students who have data
+  const withData=freshers.filter(f=>
+    getStored(f.name,'day1')||getStored(f.name,'year3')||getStored(f.name,'company')
+  );
+  if(!withData.length){showToast('No thoughts yet — fill some in first!');return;}
+  openThought(freshers.indexOf(withData[Math.floor(Math.random()*withData.length)]));
+}
+
+function closeThoughtModal(){
+  document.getElementById('thoughtModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+function handleThoughtBg(e){if(e.target===document.getElementById('thoughtModal'))closeThoughtModal();}
+
+/* ============================================================
+   NAV
+============================================================ */
+const pageOrder=['home','about','freshers','thoughts','journey','resources'];
+function showPage(id,el){
+  document.querySelectorAll('.page-section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach((a,i)=>a.classList.toggle('active',i===pageOrder.indexOf(id)));
+  if(id==='thoughts') renderThoughts(freshers);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ============================================================
+   CONFETTI
+============================================================ */
+function confetti(){
+  const wrap=document.getElementById('confetti');
+  const cols=['#00d4ff','#a855f7','#ec4899','#22d3a0','#fbbf24'];
+  for(let i=0;i<80;i++){
+    const d=document.createElement('div'); d.className='c-dot';
+    const sz=Math.random()*8+4;
+    d.style.cssText=`left:${Math.random()*100}%;width:${sz}px;height:${sz}px;background:${cols[i%cols.length]};animation-duration:${1.5+Math.random()*2}s;animation-delay:${Math.random()*1.2}s;opacity:1`;
+    wrap.appendChild(d);
+  }
+  setTimeout(()=>wrap.innerHTML='',4000);
+}
+
+/* ============================================================
+   INIT
+============================================================ */
+renderAIML('aiml-grid-home');
+renderAIML('aiml-grid-about');
+renderResources('res-home');
+renderResourcesFull();
+renderJobs();
+renderJourneyHome();
+renderJourneyFull();
+renderThoughts(freshers);
+renderGrid('fg-home',freshers);
+renderGrid('fg-full',freshers);
+confetti();
+</script>
+</body>
+</html>
