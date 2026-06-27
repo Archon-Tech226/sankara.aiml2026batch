@@ -24,9 +24,9 @@ body::before{content:'';position:fixed;inset:0;
              radial-gradient(ellipse at 80% 20%,rgba(0,212,255,0.08) 0%,transparent 50%);
   pointer-events:none;z-index:0}
 
-/* ===================== NAV ===================== */
+/* NAV */
 nav{
-  position:sticky;top:0;z-index:1000;
+  position:sticky;top:0;z-index:100;
   background:rgba(4,11,26,0.96);
   backdrop-filter:blur(14px);
   border-bottom:1px solid var(--border);
@@ -34,14 +34,10 @@ nav{
   display:flex;align-items:center;
   height:62px;gap:10px;
 }
-
-/* Logos */
 .nav-logos{display:flex;align-items:center;gap:7px;flex-shrink:0}
 .nav-logo-img{width:40px;height:40px;border-radius:50%;object-fit:cover;display:block}
 .nav-logo-fallback{display:none;width:40px;height:40px;border-radius:50%;
   align-items:center;justify-content:center;font-size:18px}
-
-/* College name — desktop: next to logos */
 .nav-college{
   display:flex;flex-direction:column;line-height:1.25;
   flex:1;min-width:0;
@@ -53,13 +49,16 @@ nav{
 }
 .nav-college span{font-size:9px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
-/* Hamburger button */
+/* HAMBURGER — fixed z-index so it stays above overlay */
 .nav-hamburger{
   display:none;
   flex-direction:column;justify-content:center;gap:5px;
-  width:38px;height:38px;padding:6px;
+  width:44px;height:44px;padding:8px;
   background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.25);
   border-radius:10px;cursor:pointer;flex-shrink:0;margin-left:auto;
+  position:relative;z-index:1200;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
 }
 .nav-hamburger span{
   display:block;height:2px;border-radius:2px;
@@ -69,42 +68,50 @@ nav{
 .nav-hamburger.open span:nth-child(2){opacity:0}
 .nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
-/* Desktop nav links */
+/* DESKTOP NAV LINKS */
 .nav-links{display:flex;gap:3px;margin-left:auto;flex-shrink:0}
 .nav-links a{
-  padding:6px 11px;border-radius:20px;color:var(--muted);
+  padding:8px 12px;border-radius:20px;color:var(--muted);
   font-size:12px;text-decoration:none;transition:all .2s;
   display:flex;align-items:center;gap:4px;cursor:pointer;
   border:1px solid transparent;white-space:nowrap;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
 }
 .nav-links a:hover,.nav-links a.active{
   background:rgba(0,212,255,0.1);color:var(--cyan);
   border-color:rgba(0,212,255,0.25);
 }
 
-/* Mobile side drawer */
+/* DRAWER OVERLAY — pointer-events none when closed */
+.nav-drawer-overlay{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,0);
+  z-index:1050;
+  pointer-events:none;
+  transition:background .3s;
+}
+.nav-drawer-overlay.open{
+  background:rgba(0,0,0,0.6);
+  pointer-events:auto;
+}
+
+/* SIDE DRAWER */
 .nav-drawer{
-  display:none;
   position:fixed;top:0;right:-280px;
   width:260px;height:100vh;
   background:rgba(7,15,34,0.98);
   backdrop-filter:blur(20px);
   border-left:1px solid var(--border);
   z-index:1100;
+  display:flex;
   flex-direction:column;
   padding:70px 0 2rem;
   transition:right .3s cubic-bezier(.4,0,.2,1);
   overflow-y:auto;
 }
 .nav-drawer.open{right:0}
-.nav-drawer-overlay{
-  display:none;position:fixed;inset:0;
-  background:rgba(0,0,0,0);z-index:1050;
-  transition:background .3s;
-}
-.nav-drawer-overlay.open{background:rgba(0,0,0,0.6)}
 
-/* College name block inside drawer */
 .drawer-header{
   padding:0 1.2rem 1.5rem;
   border-bottom:1px solid var(--border);
@@ -118,18 +125,35 @@ nav{
 
 .drawer-link{
   display:flex;align-items:center;gap:10px;
-  padding:.8rem 1.4rem;color:var(--muted);
+  padding:.9rem 1.4rem;color:var(--muted);
   font-size:14px;cursor:pointer;
   border-left:3px solid transparent;
   transition:all .2s;text-decoration:none;
+  min-height:48px;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
 }
 .drawer-link:hover,.drawer-link.active{
   color:var(--cyan);background:rgba(0,212,255,0.07);
   border-left-color:var(--cyan);
 }
-.drawer-link .dl-icon{font-size:18px;width:26px;text-align:center;flex-shrink:0}
+.drawer-link .dl-icon{font-size:20px;width:28px;text-align:center;flex-shrink:0}
 
-/* ===================== HERO ===================== */
+/* MOBILE COLLEGE BAR */
+.mobile-college-bar{
+  display:none;
+  background:rgba(4,11,26,0.97);
+  border-bottom:1px solid var(--border);
+  text-align:center;
+  padding:.6rem 1rem;
+}
+.mobile-college-bar strong{
+  font-family:'Orbitron',sans-serif;font-size:10px;
+  color:var(--cyan);display:block;margin-bottom:2px;line-height:1.5;
+}
+.mobile-college-bar span{font-size:9.5px;color:var(--muted)}
+
+/* HERO */
 .hero{position:relative;min-height:300px;display:flex;flex-direction:column;
   align-items:center;justify-content:center;text-align:center;
   padding:3.5rem 1.5rem 2.5rem;overflow:hidden}
@@ -146,15 +170,17 @@ nav{
 .hero-sub{font-size:15px;color:var(--cyan);margin-bottom:2rem;letter-spacing:2px}
 .hero-sub span{color:var(--purple)}
 .hero-btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
-.btn-primary{padding:11px 24px;border-radius:30px;border:none;
+.btn-primary{padding:12px 24px;border-radius:30px;border:none;
   background:linear-gradient(135deg,var(--cyan),#0088cc);
-  color:#000;font-weight:600;font-size:14px;cursor:pointer;transition:all .2s}
+  color:#000;font-weight:600;font-size:14px;cursor:pointer;transition:all .2s;
+  min-height:44px;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,212,255,0.4)}
-.btn-outline{padding:11px 24px;border-radius:30px;border:2px solid var(--purple);
-  background:transparent;color:var(--purple);font-weight:600;font-size:14px;cursor:pointer;transition:all .2s}
+.btn-outline{padding:12px 24px;border-radius:30px;border:2px solid var(--purple);
+  background:transparent;color:var(--purple);font-weight:600;font-size:14px;cursor:pointer;transition:all .2s;
+  min-height:44px;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 .btn-outline:hover{background:rgba(168,85,247,0.15);transform:translateY(-2px)}
 
-/* ===================== STATS ===================== */
+/* STATS */
 .stats-bar{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);
   display:flex;justify-content:center;flex-wrap:wrap}
 .stat-item{padding:1.1rem 1.8rem;text-align:center;border-right:1px solid var(--border);
@@ -163,7 +189,7 @@ nav{
 .stat-num{font-family:'Orbitron',sans-serif;font-size:24px;font-weight:800;color:var(--cyan)}
 .stat-label{font-size:11px;color:var(--muted)}
 
-/* ===================== SECTIONS ===================== */
+/* SECTIONS */
 .section{padding:3rem 1.5rem;max-width:1200px;margin:0 auto}
 .section-header{text-align:center;margin-bottom:2rem}
 .section-header h2{font-family:'Orbitron',sans-serif;font-size:clamp(17px,3vw,26px);
@@ -171,7 +197,7 @@ nav{
 .section-header p{color:var(--muted);font-size:13px}
 .section-divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
 
-/* ===================== AIML GRID ===================== */
+/* AIML GRID */
 .aiml-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px}
 .aiml-card{background:var(--card);border:1px solid var(--border);border-radius:14px;
   padding:1rem;text-align:center;transition:all .2s}
@@ -180,34 +206,39 @@ nav{
 .aiml-card h3{font-size:12px;font-weight:600;color:var(--text);margin-bottom:4px;line-height:1.3}
 .aiml-card p{font-size:11px;color:var(--muted);line-height:1.5}
 
-/* ===================== CONTROLS ===================== */
+/* CONTROLS */
 .freshers-controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:1.5rem}
 .freshers-controls input,.freshers-controls select{
   background:var(--card);border:1px solid var(--border);border-radius:8px;
-  padding:9px 14px;color:var(--text);font-size:13px;outline:none;transition:border-color .2s}
+  padding:10px 14px;color:var(--text);font-size:13px;outline:none;transition:border-color .2s;
+  min-height:44px;}
 .freshers-controls input{flex:1;min-width:160px}
 .freshers-controls input::placeholder{color:var(--muted)}
 .freshers-controls input:focus,.freshers-controls select:focus{border-color:var(--cyan)}
 .freshers-controls select option{background:var(--bg2)}
-.btn-random{margin-left:auto;padding:9px 16px;border-radius:8px;
+.btn-random{margin-left:auto;padding:10px 16px;border-radius:8px;
   border:1px solid var(--purple);background:rgba(168,85,247,0.1);
   color:var(--purple);font-size:13px;font-weight:500;cursor:pointer;
-  display:flex;align-items:center;gap:6px;transition:all .2s;white-space:nowrap}
+  display:flex;align-items:center;gap:6px;transition:all .2s;white-space:nowrap;
+  min-height:44px;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 .btn-random:hover{background:rgba(168,85,247,0.2)}
 
-/* ===================== FRESHER CARD ===================== */
-.freshers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(105px,1fr));gap:10px}
+/* FRESHER CARD — bigger touch targets */
+.freshers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
 .fresher-card{background:var(--card);border:1px solid var(--border);border-radius:14px;
-  padding:.85rem .6rem;text-align:center;cursor:pointer;transition:all .2s;user-select:none}
+  padding:1rem .8rem;text-align:center;cursor:pointer;transition:all .2s;user-select:none;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+  position:relative;z-index:1;}
 .fresher-card:hover{border-color:var(--cyan);transform:translateY(-3px);box-shadow:var(--glow)}
-.f-avatar{width:52px;height:52px;border-radius:50%;margin:0 auto 8px;
+.fresher-card:active{transform:scale(0.97)}
+.f-avatar{width:56px;height:56px;border-radius:50%;margin:0 auto 8px;
   display:flex;align-items:center;justify-content:center;
   font-family:'Orbitron',sans-serif;font-weight:800;font-size:14px;border:2px solid}
 .fresher-card h4{font-size:11.5px;font-weight:600;color:var(--text);line-height:1.3;margin-bottom:4px}
 .tap-hint{font-size:9px;color:var(--muted);opacity:.75}
 .f-count{font-size:13px;color:var(--muted);margin-bottom:.75rem;text-align:center}
 
-/* ===================== STUDENT MODAL ===================== */
+/* STUDENT MODAL */
 .s-modal-overlay{display:none;position:fixed;inset:0;
   background:rgba(2,6,18,0.88);z-index:3000;
   align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(6px)}
@@ -225,13 +256,15 @@ nav{
 .sm-meta{font-size:11px;color:var(--muted)}
 .sm-close{position:absolute;top:12px;right:12px;background:rgba(255,255,255,0.06);
   border:1px solid var(--border);color:var(--muted);font-size:15px;cursor:pointer;
-  width:28px;height:28px;border-radius:50%;display:flex;align-items:center;
-  justify-content:center;transition:all .2s}
+  width:36px;height:36px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;transition:all .2s;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;}
 .sm-close:hover{color:var(--text);border-color:var(--cyan)}
 .sm-tabs{display:flex;border-bottom:1px solid var(--border);flex-shrink:0;padding:0 1rem;overflow-x:auto}
-.sm-tab{padding:.65rem .8rem;font-size:11.5px;font-weight:500;color:var(--muted);
+.sm-tab{padding:.8rem .8rem;font-size:11.5px;font-weight:500;color:var(--muted);
   cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;
-  white-space:nowrap;display:flex;align-items:center;gap:4px}
+  white-space:nowrap;display:flex;align-items:center;gap:4px;min-height:44px;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;}
 .sm-tab:hover{color:var(--text)}
 .sm-tab.active{color:var(--cyan);border-bottom-color:var(--cyan)}
 .sm-body{padding:1.1rem 1.3rem;overflow-y:auto;flex:1}
@@ -263,10 +296,11 @@ nav{
 .field-row{display:flex;gap:8px;align-items:flex-start;margin-bottom:8px}
 .field-input{flex:1;background:rgba(255,255,255,0.04);border:1px solid;
   border-radius:10px;padding:10px 13px;color:var(--text);font-size:13px;
-  outline:none;font-family:'Inter',sans-serif;transition:border-color .2s}
+  outline:none;font-family:'Inter',sans-serif;transition:border-color .2s;min-height:44px}
 .field-input::placeholder{color:var(--muted)}
-.field-btn{padding:9px 16px;border-radius:10px;border:none;
-  font-weight:600;font-size:12px;cursor:pointer;transition:all .2s;white-space:nowrap}
+.field-btn{padding:10px 16px;border-radius:10px;border:none;
+  font-weight:600;font-size:12px;cursor:pointer;transition:all .2s;white-space:nowrap;
+  min-height:44px;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 .field-hint{font-size:10.5px;color:var(--muted);text-align:center;line-height:1.5;margin-top:4px}
 .field-ta.cyan{border-color:rgba(0,212,255,0.25)}
 .field-ta.cyan:focus{border-color:var(--cyan)}
@@ -284,7 +318,7 @@ nav{
 .field-btn.yellow{background:linear-gradient(135deg,var(--yellow),#f59e0b);color:#000}
 .field-btn.yellow:hover{box-shadow:0 4px 14px rgba(251,191,36,0.35);transform:translateY(-1px)}
 
-/* ===================== JOURNEY ===================== */
+/* JOURNEY */
 .journey-layout{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:start}
 .journey-card{border-radius:14px;padding:1.2rem;border:1px solid var(--border);background:var(--card)}
 .journey-card.active-yr{border-color:var(--purple);background:linear-gradient(135deg,rgba(168,85,247,0.1),var(--card))}
@@ -294,7 +328,7 @@ nav{
 .jcard-list li{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
 .jcard-list li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--cyan);flex-shrink:0}
 
-/* ===================== RESOURCES ===================== */
+/* RESOURCES */
 .res-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
 .res-card{background:var(--card);border:1px solid var(--border);border-radius:12px;
   padding:.85rem .75rem;display:flex;align-items:center;gap:10px;transition:all .2s;text-decoration:none}
@@ -302,7 +336,7 @@ nav{
 .res-logo{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
 .res-name{font-size:13px;font-weight:500;color:var(--text)}
 
-/* ===================== MISSION VISION ===================== */
+/* MISSION VISION */
 .mv-layout{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:2rem}
 .mv-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.4rem}
 .mv-card.mission{border-left:3px solid var(--cyan)}
@@ -316,15 +350,16 @@ nav{
 .mv-vision-points li{font-size:13px;color:var(--muted);line-height:1.65;display:flex;align-items:flex-start;gap:8px}
 .mv-vision-points li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--purple);flex-shrink:0;margin-top:6px}
 
-/* ===================== JOBS ===================== */
+/* JOBS */
 .jobs-grid{width:100%}
 .job-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1rem;transition:all .2s}
 .job-card:hover{border-color:var(--green);transform:translateY(-3px);box-shadow:0 0 20px rgba(34,211,160,0.2)}
 
-/* ===================== THOUGHTS ===================== */
+/* THOUGHTS */
 .thoughts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}
 .thought-card{background:var(--card);border:1px solid var(--border);border-radius:16px;
-  padding:1.2rem;cursor:pointer;transition:all .2s}
+  padding:1.2rem;cursor:pointer;transition:all .2s;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;}
 .thought-card:hover{border-color:var(--purple);transform:translateY(-3px);box-shadow:0 0 20px rgba(168,85,247,0.25)}
 .thought-av{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;
   justify-content:center;font-family:'Orbitron',sans-serif;font-weight:800;
@@ -340,7 +375,7 @@ nav{
 .thought-row-lbl.yellow{color:var(--yellow)}
 .thought-tap{font-size:10px;color:var(--purple);margin-top:8px;text-align:right}
 
-/* ===================== THOUGHT MODAL ===================== */
+/* THOUGHT MODAL */
 .t-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.82);
   z-index:2000;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(6px)}
 .t-modal-overlay.open{display:flex}
@@ -348,102 +383,75 @@ nav{
   padding:1.6rem;position:relative;border:1px solid rgba(168,85,247,0.35);max-height:90vh;overflow-y:auto}
 .t-modal-close{position:absolute;top:14px;right:16px;background:rgba(255,255,255,0.06);
   border:1px solid var(--border);color:var(--muted);font-size:16px;cursor:pointer;
-  width:28px;height:28px;border-radius:50%;display:flex;align-items:center;
-  justify-content:center;transition:all .2s}
+  width:36px;height:36px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;transition:all .2s;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;}
 .t-modal-close:hover{color:var(--text);border-color:var(--purple)}
 
-/* ===================== FOOTER ===================== */
+/* FOOTER */
 footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 1.5rem 1.5rem}
 .footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;margin-bottom:1.5rem}
 .footer-brand .ft{font-family:'Orbitron',sans-serif;font-size:13px;color:var(--cyan);font-weight:700}
 .footer-brand p{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.6}
 .footer-links h4,.footer-social h4{font-size:12px;font-weight:600;color:var(--text);margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
-.footer-links a{display:block;font-size:12px;color:var(--muted);text-decoration:none;margin-bottom:6px;transition:color .2s;cursor:pointer}
+.footer-links a{display:block;font-size:12px;color:var(--muted);text-decoration:none;margin-bottom:6px;transition:color .2s;cursor:pointer;min-height:36px;line-height:36px}
 .footer-links a:hover{color:var(--cyan)}
 .social-btns{display:flex;gap:8px;flex-wrap:wrap}
-.social-btn{width:36px;height:36px;border-radius:8px;border:1px solid var(--border);
+.social-btn{width:44px;height:44px;border-radius:8px;border:1px solid var(--border);
   background:transparent;color:var(--muted);font-size:15px;display:flex;
-  align-items:center;justify-content:center;cursor:pointer;transition:all .2s;text-decoration:none}
+  align-items:center;justify-content:center;cursor:pointer;transition:all .2s;text-decoration:none;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;}
 .social-btn:hover{border-color:var(--cyan);color:var(--cyan)}
 .footer-copy{text-align:center;font-size:11px;color:var(--muted);border-top:1px solid var(--border);padding-top:1rem}
 
-/* ===================== PAGE VISIBILITY ===================== */
+/* PAGE VISIBILITY */
 .page-section{display:none}
 .page-section.active{display:block}
 
-/* ===================== CONFETTI ===================== */
+/* CONFETTI */
 #confetti{position:fixed;inset:0;pointer-events:none;z-index:9999;overflow:hidden}
 .c-dot{position:absolute;border-radius:50%;animation:fall linear forwards}
 @keyframes fall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(105vh) rotate(720deg);opacity:0}}
 
-/* ===================== TOAST ===================== */
+/* TOAST */
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
   background:var(--green);color:#000;font-size:13px;font-weight:600;
   padding:10px 22px;border-radius:30px;opacity:0;transition:all .3s;
   z-index:9000;pointer-events:none;white-space:nowrap}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-/* ===================== MOBILE RESPONSIVE ===================== */
+/* MOBILE */
 @media(max-width:768px){
-  /* Show hamburger, hide desktop links */
   .nav-hamburger{display:flex}
   .nav-links{display:none}
-  .nav-drawer{display:flex}
-  .nav-drawer-overlay{display:block}
-
-  /* College name: centered below logos on mobile — hide from nav bar */
   .nav-college{display:none}
+  .mobile-college-bar{display:block}
 
-  /* Mobile college name banner */
-  .mobile-college-bar{
-    display:block;
-    background:rgba(4,11,26,0.97);
-    border-bottom:1px solid var(--border);
-    text-align:center;
-    padding:.6rem 1rem;
-  }
-  .mobile-college-bar strong{
-    font-family:'Orbitron',sans-serif;font-size:10px;
-    color:var(--cyan);display:block;margin-bottom:2px;line-height:1.5;
-  }
-  .mobile-college-bar span{font-size:9.5px;color:var(--muted)}
-
-  /* Tighter hero */
   .hero{padding:2.5rem 1rem 2rem}
   .hero h1{font-size:clamp(22px,7vw,34px)}
 
-  /* Stats: 2 col grid */
   .stats-bar{display:grid;grid-template-columns:1fr 1fr}
   .stat-item{border-right:none;border-bottom:1px solid var(--border)}
   .stat-item:nth-child(odd){border-right:1px solid var(--border)}
   .stat-item:last-child{grid-column:1/-1;border-bottom:none}
 
-  /* Full width fresher grid 2 cols */
   .freshers-grid{grid-template-columns:repeat(2,1fr)}
 
-  /* Journey full width */
   .journey-layout{grid-template-columns:1fr}
 
-  /* Mission/vision stack */
   .mv-layout{grid-template-columns:1fr}
 
-  /* Home 2-col section → single col */
-  .section[style*="grid-template-columns:1fr 1fr"]{
-    display:block!important;
-  }
-
-  /* Footer */
   .footer-inner{grid-template-columns:1fr}
 
-  /* Section padding */
   .section{padding:2rem 1rem}
+
+  /* Home split section */
+  .home-split{display:block!important}
+  .home-split > div{margin-bottom:2rem}
 }
 
 @media(min-width:769px){
-  /* Hide mobile-only elements on desktop */
   .mobile-college-bar{display:none}
-  .nav-drawer{display:none!important}
-  .nav-drawer-overlay{display:none!important}
 }
 </style>
 </head>
@@ -452,16 +460,15 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 1
 <div id="confetti"></div>
 <div class="toast" id="toast"></div>
 
-<!-- Mobile college name banner (below nav on mobile) -->
 <div class="mobile-college-bar">
   <strong>SANKARA COLLEGE OF SCIENCE &amp; COMMERCE</strong>
   <span>Department of Artificial Intelligence &amp; Machine Learning</span>
 </div>
 
-<!-- Drawer overlay -->
+<!-- Drawer overlay — pointer-events controlled by JS class -->
 <div class="nav-drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
 
-<!-- Right side drawer -->
+<!-- Side drawer -->
 <div class="nav-drawer" id="navDrawer">
   <div class="drawer-header">
     <strong>SANKARA COLLEGE OF SCIENCE &amp; COMMERCE</strong>
@@ -487,7 +494,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 1
   </a>
 </div>
 
-<!-- ===== STUDENT MODAL ===== -->
+<!-- STUDENT MODAL -->
 <div class="s-modal-overlay" id="studentModal" onclick="handleModalBg(event)">
   <div class="s-modal-box">
     <div class="sm-header">
@@ -499,10 +506,10 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 1
       <button class="sm-close" onclick="closeStudentModal()">✕</button>
     </div>
     <div class="sm-tabs">
-      <div class="sm-tab active" onclick="switchTab(0,this)">✨ Welcome</div>
-      <div class="sm-tab" onclick="switchTab(1,this)">📍 Day 1</div>
-      <div class="sm-tab" onclick="switchTab(2,this)">🎓 3rd Year</div>
-      <div class="sm-tab" onclick="switchTab(3,this)">🏢 Dream Co.</div>
+      <div class="sm-tab active" onclick="switchTab(0)">✨ Welcome</div>
+      <div class="sm-tab" onclick="switchTab(1)">📍 Day 1</div>
+      <div class="sm-tab" onclick="switchTab(2)">🎓 3rd Year</div>
+      <div class="sm-tab" onclick="switchTab(3)">🏢 Dream Co.</div>
     </div>
     <div class="sm-body">
       <div class="sm-panel active" id="sp-0">
@@ -566,7 +573,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 1
   </div>
 </div>
 
-<!-- ===== THOUGHT MODAL ===== -->
+<!-- THOUGHT MODAL -->
 <div class="t-modal-overlay" id="thoughtModal" onclick="handleThoughtBg(event)">
   <div class="t-modal-box">
     <button class="t-modal-close" onclick="closeThoughtModal()">✕</button>
@@ -588,7 +595,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 1
   </div>
 </div>
 
-<!-- ===== NAV ===== -->
+<!-- NAV -->
 <nav>
   <div class="nav-logos">
     <div style="position:relative">
@@ -605,13 +612,11 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 1
     </div>
   </div>
 
-  <!-- Desktop college name -->
   <div class="nav-college">
     <strong>SANKARA COLLEGE OF SCIENCE &amp; COMMERCE</strong>
     <span>Department of AI &amp; Machine Learning</span>
   </div>
 
-  <!-- Desktop nav links -->
   <div class="nav-links">
     <a class="active" onclick="showPage('home',this)">🏠 Home</a>
     <a onclick="showPage('about',this)">🤖 About AIML</a>
@@ -621,13 +626,12 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 1
     <a onclick="showPage('resources',this)">📚 Resources</a>
   </div>
 
-  <!-- Mobile hamburger -->
   <button class="nav-hamburger" id="hamburger" onclick="toggleDrawer()">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
-<!-- ===== HOME ===== -->
+<!-- HOME -->
 <div id="page-home" class="page-section active">
   <div class="hero">
     <div class="hero-bg"></div>
@@ -665,7 +669,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 1
     <div class="freshers-grid" id="fg-home"></div>
   </div>
   <div class="section-divider"></div>
-  <div class="section" style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start">
+  <div class="section home-split" style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start">
     <div>
       <div class="section-header" style="text-align:left"><h2>📚 Learning Journey</h2></div>
       <div class="journey-layout" id="journey-home"></div>
@@ -677,7 +681,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 1
   </div>
 </div>
 
-<!-- ===== ABOUT ===== -->
+<!-- ABOUT -->
 <div id="page-about" class="page-section">
   <div class="section">
     <div class="section-header"><h2>🤖 About AIML</h2><p>The complete landscape of Artificial Intelligence &amp; Machine Learning</p></div>
@@ -706,7 +710,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 1
   </div>
 </div>
 
-<!-- ===== FRESHERS ===== -->
+<!-- FRESHERS -->
 <div id="page-freshers" class="page-section">
   <div class="section">
     <div class="section-header"><h2>👨‍🎓 Meet Our Freshers</h2><p>Class of 2026 — 65 brilliant minds of B.Sc. AI &amp; ML</p></div>
@@ -723,7 +727,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 1
   </div>
 </div>
 
-<!-- ===== THOUGHTS ===== -->
+<!-- THOUGHTS -->
 <div id="page-thoughts" class="page-section">
   <div class="section">
     <div class="section-header">
@@ -742,7 +746,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 1
   </div>
 </div>
 
-<!-- ===== JOURNEY ===== -->
+<!-- JOURNEY -->
 <div id="page-journey" class="page-section">
   <div class="section">
     <div class="section-header"><h2>📚 Your Learning Journey</h2><p>Three years, one transformation</p></div>
@@ -750,7 +754,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 1
   </div>
 </div>
 
-<!-- ===== RESOURCES ===== -->
+<!-- RESOURCES -->
 <div id="page-resources" class="page-section">
   <div class="section">
     <div class="section-header"><h2>🌐 Learning Resources</h2><p>Everything you need to go from zero to AI hero</p></div>
@@ -758,7 +762,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.5rem 1
   </div>
 </div>
 
-<!-- ===== FOOTER ===== -->
+<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
@@ -809,6 +813,75 @@ const avatarColors=[
   ['rgba(236,72,153,0.18)','#ec4899'],
   ['rgba(34,211,160,0.18)','#22d3a0'],
   ['rgba(251,191,36,0.18)','#fbbf24']
+];
+
+/* SEPARATE welcome messages (distinct from quotes) */
+const welcomeMsgs=[
+  'Welcome to the family of AI & ML innovators! Your journey starts today.',
+  'AIML 2026 — you made it! This department will shape the thinker in you.',
+  'Hello fresher! You have chosen the most exciting field of this decade.',
+  'Welcome aboard! Curiosity is your greatest strength here.',
+  'The AI revolution needs you. Welcome to where it begins!',
+  'From Day 1 to Placement Day — we are with you every step.',
+  'Welcome! The best investment you can make is in your own learning.',
+  'You belong here. Sankara AIML is your launchpad.',
+  'A new chapter begins! Make every lecture, project and lab count.',
+  'Welcome, future AI engineer! Dream big and code bigger.',
+  'Glad you are here! Your potential is limitless in this field.',
+  'AIML 2026 — 65 bright minds, one shared mission. Welcome!',
+  'Today you are a student. Tomorrow you may build the next ChatGPT.',
+  'Welcome! Every expert was once a beginner — your time starts now.',
+  'The future is intelligent, and you are its architect. Welcome!',
+  'Hello and welcome! Sankara AIML is proud to have you.',
+  'You chose AI & ML — bold move, brilliant choice. Welcome!',
+  'From zero to AI hero — that is the journey ahead. Welcome!',
+  'Welcome, fresher! Your curiosity is your superpower here.',
+  'The classroom is just the beginning. Welcome to AIML 2026!',
+  'Welcome! Great engineers are not born, they are built — one semester at a time.',
+  'So happy you are part of this batch! Let the learning begin.',
+  'Welcome to Sankara AIML! Where code meets creativity.',
+  'You are now part of something big. Welcome to the future.',
+  'Hello fresher! Passion + discipline = a career in AI. Welcome!',
+  'Welcome! Every line of code you write brings you closer to your dream.',
+  'Sankara AIML 2026 — welcome to a department that believes in you.',
+  'You made the right choice. Welcome and let us get to work!',
+  'A warm welcome! Your three years here will change your life.',
+  'Welcome! The AI world is waiting for what you will build.',
+  'New beginnings are always exciting. Welcome to AIML!',
+  'Hello! You are not just a student here — you are a future innovator.',
+  'Welcome to the batch of 2026. Make us proud!',
+  'The journey of a thousand algorithms begins with a single step. Welcome!',
+  'Welcome! Stay curious, stay consistent, and watch what happens.',
+  'Sankara AIML is glad to have you. Welcome, bright mind!',
+  'You dreamed of studying AI — now you are living it. Welcome!',
+  'Welcome! The best is yet to come for you in this field.',
+  'Hello fresher! Hard work here will pay off in extraordinary ways.',
+  'Welcome to the department where ideas become intelligent systems!',
+  'You are the future of AI in India. Welcome to AIML 2026.',
+  'A big welcome! Your potential meets its match here.',
+  'Welcome! Every project you complete is a step toward your goal.',
+  'Hello and welcome! We are excited to learn and grow with you.',
+  'Welcome to a place where your ideas will be taken seriously.',
+  'You chose wisely. Welcome to B.Sc. AI & ML — let us build!',
+  'Welcome fresher! Today a student, tomorrow a leader in AI.',
+  'Hello! Sankara AIML opens its doors to your bright future.',
+  'Welcome to a community of learners, builders and dreamers.',
+  'Your story in AI starts here. Welcome to the AIML family!',
+  'Welcome! This department will challenge you and reward you.',
+  'Hello! Get ready for three transformative, exciting years.',
+  'Welcome, future data scientist! The numbers are in your favor.',
+  'Sankara AIML 2026 — welcome to the smartest batch yet!',
+  'Welcome! Everything you do here adds up to something great.',
+  'Hello fresher! AI is not just a subject here, it is a mindset.',
+  'Welcome! Your first semester is the foundation of your career.',
+  'A heartfelt welcome! The AI journey can be tough but so worth it.',
+  'Welcome! Sankara AIML will give you the tools; you bring the ambition.',
+  'Hello and welcome! Your batch will do great things — we believe it.',
+  'Welcome to the world of machine learning — where data tells stories!',
+  'Hello fresher! Hard questions lead to brilliant answers. Welcome!',
+  'Welcome! You are exactly where you need to be right now.',
+  'Sankara AIML welcomes you with open arms and full lab access!',
+  'Welcome! The smartest thing you did was say yes to AIML.',
 ];
 
 const quotes=[
@@ -877,8 +950,6 @@ const quotes=[
   'The world needs thinkers who dare to build.',
   'Your journey in AIML starts with a question, but it can end by changing the world.',
 ];
-
-const welcomeMsgs=quotes.slice();
 
 const aiPredictions=[
   'AI predicts you\'ll solve a bug today.',
@@ -1028,12 +1099,13 @@ function showToast(msg){
 function lsKey(name,field){return 'aiml26_'+field+'_'+name.replace(/\s+/g,'_')}
 function getStored(name,field){return localStorage.getItem(lsKey(name,field))||''}
 
-/* ============================================================ DRAWER */
+/* ============================================================ DRAWER — fixed overlay logic */
 function toggleDrawer(){
   const d=document.getElementById('navDrawer');
   const o=document.getElementById('drawerOverlay');
   const h=document.getElementById('hamburger');
-  const open=d.classList.toggle('open');
+  const open=!d.classList.contains('open');
+  d.classList.toggle('open',open);
   o.classList.toggle('open',open);
   h.classList.toggle('open',open);
   document.body.style.overflow=open?'hidden':'';
@@ -1175,6 +1247,7 @@ function openStudentModal(idx){
   if(dc){dcel.textContent=dc;dcel.className='field-saved-text'}
   else{dcel.textContent='Not filled yet — what\'s your dream?';dcel.className='field-saved-empty'}
   document.getElementById('dc-input').value=dc;
+  /* Reset to first tab */
   document.querySelectorAll('.sm-tab').forEach((t,i)=>t.classList.toggle('active',i===0));
   document.querySelectorAll('.sm-panel').forEach((p,i)=>p.classList.toggle('active',i===0));
   document.getElementById('studentModal').classList.add('open');
@@ -1190,10 +1263,13 @@ function closeStudentModal(){
   activeIdx=null;
 }
 function handleModalBg(e){if(e.target===document.getElementById('studentModal'))closeStudentModal();}
+
+/* Fixed switchTab — takes only idx */
 function switchTab(idx){
   document.querySelectorAll('.sm-tab').forEach((t,i)=>t.classList.toggle('active',i===idx));
   document.querySelectorAll('.sm-panel').forEach((p,i)=>p.classList.toggle('active',i===idx));
 }
+
 function saveField(field){
   if(activeIdx===null)return;
   const f=freshers[activeIdx];
@@ -1260,9 +1336,7 @@ const pageOrder=['home','about','freshers','thoughts','journey','resources'];
 function showPage(id,el){
   document.querySelectorAll('.page-section').forEach(s=>s.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
-  // Desktop nav
   document.querySelectorAll('.nav-links a').forEach((a,i)=>a.classList.toggle('active',i===pageOrder.indexOf(id)));
-  // Drawer nav
   document.querySelectorAll('.drawer-link').forEach(a=>a.classList.remove('active'));
   const dl=document.getElementById('dl-'+id);if(dl)dl.classList.add('active');
   if(id==='thoughts')renderThoughts(freshers);
